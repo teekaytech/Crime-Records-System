@@ -1,7 +1,11 @@
 <% if notice %>
-  <p class="notice"><%= notice %></p>
+  <div class="alert alert-success m-0 p-0 text-center" role="alert">
+    <p class="notice py-2 m-0"><%= notice %></p>
+  </div>
 <% end %>
 
 <% if alert %>
-  <p class="alert"><%= alert %></p>
+  <div class="alert alert-danger m-0 p-0 text-center" role="alert">
+    <p class="alert py-2 m-0"><%= alert %></p>
+  </div>
 <% end %>
