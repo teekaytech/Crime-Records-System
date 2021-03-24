@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Crimes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Category</th>
+      <th>Accuser</th>
+      <th>Accused</th>
+      <th>Unknown others</th>
+      <th>Date</th>
+      <th>Statements</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @crimes.each do |crime| %>
+      <tr>
+        <td><%= crime.user_id %></td>
+        <td><%= crime.category_id %></td>
+        <td><%= crime.accuser %></td>
+        <td><%= crime.accused %></td>
+        <td><%= crime.unknown_others %></td>
+        <td><%= crime.date %></td>
+        <td><%= crime.statements %></td>
+        <td><%= link_to 'Show', crime %></td>
+        <td><%= link_to 'Edit', edit_crime_path(crime) %></td>
+        <td><%= link_to 'Destroy', crime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Crime', new_crime_path %>

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>First Information Reports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Complainant</th>
+      <th>Offense</th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Suspect details</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @first_information_reports.each do |first_information_report| %>
+      <tr>
+        <td><%= first_information_report.user_id %></td>
+        <td><%= first_information_report.complainant_id %></td>
+        <td><%= first_information_report.offense %></td>
+        <td><%= first_information_report.date %></td>
+        <td><%= first_information_report.location %></td>
+        <td><%= first_information_report.suspect_details %></td>
+        <td><%= link_to 'Show', first_information_report %></td>
+        <td><%= link_to 'Edit', edit_first_information_report_path(first_information_report) %></td>
+        <td><%= link_to 'Destroy', first_information_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New First Information Report', new_first_information_report_path %>

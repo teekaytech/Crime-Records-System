@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @crime.user_id %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @crime.category_id %>
+</p>
+
+<p>
+  <strong>Accuser:</strong>
+  <%= @crime.accuser %>
+</p>
+
+<p>
+  <strong>Accused:</strong>
+  <%= @crime.accused %>
+</p>
+
+<p>
+  <strong>Unknown others:</strong>
+  <%= @crime.unknown_others %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @crime.date %>
+</p>
+
+<p>
+  <strong>Statements:</strong>
+  <%= @crime.statements %>
+</p>
+
+<%= link_to 'Edit', edit_crime_path(@crime) %> |
+<%= link_to 'Back', crimes_path %>

@@ -1,0 +1,47 @@
+<%= form_with(model: first_information_report) do |form| %>
+  <% if first_information_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(first_information_report.errors.count, "error") %> prohibited this first_information_report from being saved:</h2>
+
+      <ul>
+        <% first_information_report.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :complainant_id %>
+    <%= form.text_field :complainant_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :offense %>
+    <%= form.text_field :offense %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :suspect_details %>
+    <%= form.text_field :suspect_details %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

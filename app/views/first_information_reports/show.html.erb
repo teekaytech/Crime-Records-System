@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @first_information_report.user_id %>
+</p>
+
+<p>
+  <strong>Complainant:</strong>
+  <%= @first_information_report.complainant_id %>
+</p>
+
+<p>
+  <strong>Offense:</strong>
+  <%= @first_information_report.offense %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @first_information_report.date %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @first_information_report.location %>
+</p>
+
+<p>
+  <strong>Suspect details:</strong>
+  <%= @first_information_report.suspect_details %>
+</p>
+
+<%= link_to 'Edit', edit_first_information_report_path(@first_information_report) %> |
+<%= link_to 'Back', first_information_reports_path %>

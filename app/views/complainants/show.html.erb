@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @complainant.user_id %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @complainant.surname %>
+</p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @complainant.firstname %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @complainant.dob %>
+</p>
+
+<p>
+  <strong>Nationality:</strong>
+  <%= @complainant.nationality %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @complainant.address %>
+</p>
+
+<p>
+  <strong>Occupation:</strong>
+  <%= @complainant.occupation %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @complainant.phone %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @complainant.gender %>
+</p>
+
+<p>
+  <strong>Criminal:</strong>
+  <%= @complainant.criminal %>
+</p>
+
+<%= link_to 'Edit', edit_complainant_path(@complainant) %> |
+<%= link_to 'Back', complainants_path %>
