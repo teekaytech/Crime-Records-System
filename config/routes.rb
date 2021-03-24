@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   resources :first_information_reports
   resources :complainants
   resources :crimes
