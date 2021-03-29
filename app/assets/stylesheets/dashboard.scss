@@ -152,7 +152,7 @@
     .recent-grid {
       margin-top: 3rem;
       display: grid;
-      grid-template-columns: 67% auto;
+      grid-template-columns: 65% auto;
       grid-gap: 2rem;
 
       .projects,
@@ -175,10 +175,52 @@
             padding: 0.5rem 1rem;
             border: 1px solid $main-color;
           }
+        }
 
-          &__card-body {
+        &__card-body {
+          .customer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 1rem;
+
+            .info {
+              display: flex;
+              align-items: center;
+              font-size: 0.9rem;
+
+              h4 {
+                font-weight: 700;
+                font-size: 0.9rem;
+                color: #222;
+              }
+
+              img {
+                border-radius: 50%;
+                margin-right: 1rem;
+              }
+
+              small {
+                font-weight: 500;
+                color: $text-grey;
+              }
+            }
+
+            .contact {
+              span {
+                display: inline-block;
+                font-size: 1.2rem;
+                margin-left: 0.5rem;
+                color: $main-color;
+              }
+            }
           }
         }
+      }
+
+      .table-responsive {
+        width: 100%;
+        overflow-x: auto;
       }
 
       table {
