@@ -1,2 +1,164 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<div class="sidebar">
+  <div class="sidebar__brand">
+    <h2><span class="lab la-accusoft"></span>CRMS</h2>
+  </div>
+
+  <div class="sidebar__menu">
+    <ul>
+      <li>
+        <a href="#" class="active"><span class="las la-igloo"></span><span>Dashboard</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="las la-clipboard-list"></span><span>Police Station</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="las la-user-circle"></span><span>Police Officers</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="las la-users"></span><span>Criminals/FIR</span></a>
+      </li>
+      <li>
+        <a href="#"><span class="las la-clipboard-list"></span><span>Report</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="main-content">
+  <header>
+    <h3>
+      <label for=""><span class="las la-bars hamburger"></span>Dashboard</label>
+    </h3>
+    <div class="search-wrapper">
+      <span class="las la-search"></span>
+      <input type="search" name="search" id="search" placeholder="Search FIR by unique ID">
+    </div>
+    <div class="user-wrapper">
+      <img src="<%= asset_path('npf.png') %>" alt="user-icon" srcset="">
+      <div class="">
+        <h5>John Doe</h5>
+        <small>Super Admin</small>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="cards">
+      <div class="cards__single">
+        <div class="">
+          <h1>54</h1>
+          <span class="metacard">Police Officers</span>
+        </div>
+        <div class="">
+          <span class="la la-users icon"></span>
+        </div>
+      </div>
+      <div class="cards__single">
+        <div class="">
+          <h1>79</h1>
+          <span class="metacard">Criminals</span>
+        </div>
+        <div class="">
+          <span class="la la-users icon"></span>
+        </div>
+      </div>
+      <div class="cards__single">
+        <div class="">
+          <h1>124</h1>
+          <span class="metacard">Categories</span>
+        </div>
+        <div class="">
+          <span class="la la-clipboard-list icon"></span>
+        </div>
+      </div>
+      <div class="cards__single">
+        <div class="">
+          <h1>544</h1>
+          <span class="metacard">Pending FIRs</span>
+        </div>
+        <div class="">
+          <span class="la la-clipboard-list icon"></span>
+        </div>
+      </div>
+    </div>
+    <section class="recent-grid">
+      <div class="projects">
+        <div class="projects__card b-none">
+          <div class="projects__card-header">
+            <h4>Recent FIRs</h4>
+            <button>See all <span class="las la-arrow-right"></span></button>
+          </div>
+          <div class="projects__card-body">
+            <table width="100%">
+              <thead>
+                <tr>
+                  <td>Project Title</td>
+                  <td>Department</td>
+                  <td>Status</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UI/UX Design</td>
+                  <td>UI Team</td>
+                  <td class="status-col"><span class="status purple"></span>review</td>
+                </tr>
+                <tr>
+                  <td>UI/UX Design</td>
+                  <td>UI Team</td>
+                  <td class="status-col"><span class="status pink"></span>in progress</td>
+                </tr>
+                <tr>
+                  <td>UI/UX Design</td>
+                  <td>UI Team</td>
+                  <td class="status-col"><span class="status orange"></span>pending</td>
+                </tr>
+                <tr>
+                  <td>UI/UX Design</td>
+                  <td>UI Team</td>
+                  <td class="status-col"><span class="status purple"></span>review</td>
+                </tr>
+                <tr>
+                  <td>UI/UX Design</td>
+                  <td>UI Team</td>
+                  <td class="status-col"><span class="status pink"></span>in progress</td>
+                </tr>
+                <tr>
+                  <td>UI/UX Design</td>
+                  <td>UI Team</td>
+                  <td class="status-col"><span class="status orange"></span>pending</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="customers">
+        <div class="customers__card">
+          <div class="customers__card-header">
+            <h4>New Customer</h4>
+            <button>See all <span class="las la-arrow-right"></span></button>
+          </div>
+          <div class="customers__card-body">
+            <div class="customer">
+              <%= image_tag asset_path('npf.png'), width: '40px', height: '40px', alt: 'icon' %>
+              <div>
+                <h4>Lewis S. Cunningham</h4>
+                <small>CEO Excerpt</small>
+              </div>
+              <div>
+                <span class="las la-user-circle"></span>
+                <span class="las la-user-comment"></span>
+                <span class="las la-user-phone"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="contents">
+      <h1>Dashboard#index</h1>
+        <p>Find me in app/views/dashboard/index.html.erb</p>
+        <i class="las la-battery-three-quarters"></i>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-success' %>
+      </div>
+  </main>
+</div>
