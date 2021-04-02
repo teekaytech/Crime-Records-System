@@ -310,7 +310,27 @@
 }
 
 @media only screen and (max-width: 960px) {
+  .sidebar {
+    left: -100% !important;
+  }
+
+  .hamburger {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 20%;
+    background-color: $main-color;
+    color: #fff;
+  }
+
   .main-content {
+    width: 100%;
+    margin-left: 0;
+
+    header {
+      width: 100%;
+      left: 0;
+    }
+
     main {
       .cards {
         grid-template-columns: repeat(3, 1fr);
@@ -321,13 +341,38 @@
       }
     }
   }
+
+  #nav-toggle:checked + .sidebar {
+    left: 0 !important;
+    z-index: 100;
+    width: 345px;
+
+    .sidebar__brand,
+    ul {
+      padding-left: 2rem;
+      text-align: left;
+    }
+
+    .active {
+      padding-left: 1rem;
+      margin-left: 0;
+    }
+
+    .bar-text {
+      display: inline;
+    }
+
+    .la-accusoft {
+      padding-right: 1rem;
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
   .main-content {
     main {
       .cards {
-        grid-template-columns: 100%;
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .recent-grid {
@@ -336,8 +381,30 @@
     }
 
     header {
+      padding: 0.6rem;
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      .hamburger {
+        font-size: 1.2rem;
+        padding-right: 0.5rem;
+        cursor: pointer;
+      }
+
       .search-wrapper {
         display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .main-content {
+    main {
+      .cards {
+        grid-template-columns: 100%;
       }
     }
   }
