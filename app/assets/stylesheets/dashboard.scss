@@ -78,8 +78,6 @@
       cursor: pointer;
     }
 
-    @use 'responsiveness';
-
     .search-wrapper {
       border: 1px solid #ccc;
       border-radius: 30px;
@@ -137,6 +135,15 @@
         padding: 2rem;
         border-radius: 5px;
 
+        .metacard {
+          color: $text-grey;
+        }
+
+        .icon {
+          color: $main-color;
+          font-size: 3rem;
+        }
+
         &:hover {
           cursor: pointer;
           background-color: $main-color;
@@ -146,15 +153,6 @@
           .icon {
             color: #fff;
           }
-        }
-
-        .metacard {
-          color: $text-grey;
-        }
-
-        .icon {
-          color: $main-color;
-          font-size: 3rem;
         }
       }
     }
@@ -268,6 +266,78 @@
             font-weight: 600;
           }
         }
+      }
+    }
+  }
+}
+
+#nav-toggle {
+  display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  .sidebar {
+    width: 70px;
+
+    .bar-text {
+      display: none;
+    }
+
+    .sidebar__brand,
+    ul {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .la-accusoft {
+      padding-right: 0;
+    }
+
+    .active {
+      padding-left: 0;
+      margin-left: 1rem;
+    }
+  }
+
+  .main-content {
+    margin-left: 70px;
+
+    header {
+      left: 70px;
+      width: calc(100% - 70px);
+    }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .main-content {
+    main {
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .recent-grid {
+        grid-template-columns: 50% auto;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main-content {
+    main {
+      .cards {
+        grid-template-columns: 100%;
+      }
+
+      .recent-grid {
+        grid-template-columns: 100%;
+      }
+    }
+
+    header {
+      .search-wrapper {
+        display: none;
       }
     }
   }
