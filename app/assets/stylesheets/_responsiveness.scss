@@ -1,0 +1,37 @@
+@import "imports";
+
+#nav-toggle {
+  display: none;
+
+  &:checked + .sidebar {
+    width: 70px;
+
+    .bar-text {
+      display: none;
+    }
+
+    .sidebar__brand,
+    ul {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .la-accusoft {
+      padding-right: 0;
+    }
+
+    .active {
+      padding-left: 0;
+      margin-left: 1rem;
+    }
+  }
+
+  &:checked ~ .main-content {
+    margin-left: 70px;
+
+    header {
+      left: 70px;
+      width: calc(100% - 70px);
+    }
+  }
+}
