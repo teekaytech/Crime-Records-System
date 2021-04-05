@@ -1,0 +1,23 @@
+<header>
+  <h3>
+    <label for="nav-toggle">
+      <span class="las la-bars hamburger"></span>
+      <% if defined?(title) && title %>
+        <%= title %>
+      <% else %>
+        CRMS
+      <% end %>
+    </label>
+  </h3>
+  <div class="search-wrapper">
+    <span class="las la-search"></span>
+    <input type="search" name="search" id="search" placeholder="Search FIR by unique ID">
+  </div>
+  <div class="user-wrapper">
+    <img src="<%= asset_path('npf.png') %>" alt="user-icon" srcset="">
+    <div class="">
+      <h5><%= current_user.firstname %></h5>
+      <small><%= current_user.admin ? 'Super Admin' : 'Police Officer' %></small>
+    </div>
+  </div>
+</header>

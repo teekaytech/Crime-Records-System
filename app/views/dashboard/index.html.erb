@@ -1,49 +1,7 @@
-<input type="checkbox" id="nav-toggle">
-<div class="sidebar">
-  <div class="sidebar__brand">
-    <h2><span class="lab la-accusoft"></span><span class="bar-text">CRMS</span></h2>
-  </div>
 
-  <div class="sidebar__menu">
-    <ul>
-      <li class="menu-list">
-        <a href="#" class="active"><span class="las la-igloo"></span><span class="bar-text">Dashboard</span></a>
-      </li>
-      <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Police Station</span></a>
-      </li>
-      <li class="menu-list">
-        <a href="#"><span class="las la-user-circle"></span><span class="bar-text">Police Officers</span></a>
-      </li>
-      <li class="menu-list">
-        <a href="#"><span class="las la-users"></span><span class="bar-text">Criminals/FIR</span></a>
-      </li>
-      <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Report</span></a>
-      </li>
-      <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Logout</span></a>
-      </li>
-    </ul>
-  </div>
-</div>
+<%= render 'sidebar' %>
 <div class="main-content">
-  <header>
-    <h3>
-      <label for="nav-toggle"><span class="las la-bars hamburger"></span>Dashboard</label>
-    </h3>
-    <div class="search-wrapper">
-      <span class="las la-search"></span>
-      <input type="search" name="search" id="search" placeholder="Search FIR by unique ID">
-    </div>
-    <div class="user-wrapper">
-      <img src="<%= asset_path('npf.png') %>" alt="user-icon" srcset="">
-      <div class="">
-        <h5>John Doe</h5>
-        <small>Super Admin</small>
-      </div>
-    </div>
-  </header>
+  <%= render 'header', title: 'Dashboard' %>
   <main>
     <div class="cards">
       <div class="cards__single">
@@ -227,11 +185,8 @@
         </div>
       </div>
     </section>
-    <div class="contents">
-      <h1>Dashboard#index</h1>
-        <p>Find me in app/views/dashboard/index.html.erb</p>
-        <i class="las la-battery-three-quarters"></i>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-success' %>
-      </div>
   </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
 </div>

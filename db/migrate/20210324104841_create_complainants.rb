@@ -4,13 +4,13 @@ class CreateComplainants < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.string :surname
       t.string :firstname
-      t.string :dob
+      t.timestamp :dob
       t.string :nationality
       t.string :address
       t.string :occupation
       t.string :phone
       t.string :gender
-      t.boolean :criminal
+      t.string :email
 
       t.timestamps
     end

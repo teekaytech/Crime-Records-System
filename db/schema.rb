@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_105155) do
+ActiveRecord::Schema.define(version: 2021_04_05_092550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,21 +27,29 @@ ActiveRecord::Schema.define(version: 2021_03_24_105155) do
     t.bigint "user_id", null: false
     t.string "surname"
     t.string "firstname"
-    t.string "dob"
+    t.datetime "dob"
     t.string "nationality"
     t.string "address"
     t.string "occupation"
     t.string "phone"
     t.string "gender"
-    t.boolean "criminal"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_complainants_on_user_id"
   end
 
+  create_table "crime_categories", force: :cascade do |t|
+    t.bigint "crime_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_crime_categories_on_category_id"
+    t.index ["crime_id"], name: "index_crime_categories_on_crime_id"
+  end
+
   create_table "crimes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
     t.string "accuser"
     t.string "accused"
     t.string "unknown_others"
@@ -49,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_03_24_105155) do
     t.string "statements"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_crimes_on_category_id"
     t.index ["user_id"], name: "index_crimes_on_user_id"
   end
 
@@ -77,17 +84,18 @@ ActiveRecord::Schema.define(version: 2021_03_24_105155) do
     t.boolean "admin", default: false
     t.string "firstname"
     t.string "lastname"
-    t.date "gender"
+    t.string "gender"
     t.string "phone"
     t.string "address"
-    t.string "occupation"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "categories", "users"
   add_foreign_key "complainants", "users"
-  add_foreign_key "crimes", "categories"
+  add_foreign_key "crime_categories", "categories"
+  add_foreign_key "crime_categories", "crimes"
   add_foreign_key "crimes", "users"
   add_foreign_key "first_information_reports", "complainants"
   add_foreign_key "first_information_reports", "users"

@@ -1,0 +1,31 @@
+<input type="checkbox" id="nav-toggle">
+<div class="sidebar">
+  <div class="sidebar__brand">
+    <h2><span class="lab la-accusoft"></span><span class="bar-text">CRMS</span></h2>
+  </div>
+
+  <div class="sidebar__menu">
+    <ul>
+      <li class="menu-list">
+        <a href="#" class="active"><span class="las la-igloo"></span><span class="bar-text">Dashboard</span></a>
+      </li>
+      <li class="menu-list">
+        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Police Station</span></a>
+      </li>
+      <li class="menu-list">
+        <a href="#"><span class="las la-user-circle"></span><span class="bar-text">Police Officers</span></a>
+      </li>
+      <li class="menu-list">
+        <a href="#"><span class="las la-users"></span><span class="bar-text">Criminals/FIR</span></a>
+      </li>
+      <li class="menu-list">
+        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Report</span></a>
+      </li>
+      <li class="menu-list">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <span class="las la-clipboard-list"></span><span class="bar-text">Logout</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
