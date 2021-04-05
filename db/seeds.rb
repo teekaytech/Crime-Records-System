@@ -63,7 +63,7 @@ c1 = Complainant.create!(
   user: user1
 )
 
-Complainant.create!(
+c2 = Complainant.create!(
   firstname: 'Fatoki',
   surname: 'Peters',
   email: 'complainant3@test.com',
@@ -76,14 +76,18 @@ Complainant.create!(
   user: user2
 )
 
-FirstInformationReport.create!(
-  offense: 'Illegal possession of firearms',
-  date: Date.today,
-  location: 'Ijegun',
-  suspect_details: 'One man named Adebayo Williams with Toyota Camry car, plate no: IKJ123LG',
-  user: user1,
-  complainant: c1
-)
+1..10.times do
+  FirstInformationReport.create!(
+    offense: ['Rape', 'Illegal Possession of Firearms', 'Bugle', 'Stealing', 'Conspiracy to commit murder'].sample,
+    date: Date.today,
+    location: ['Ijegun', 'Somolu', 'Bariga', 'Lekki Toll', 'Victoria Island'].sample,
+    suspect_details: 'One man named Adebayo Williams with Toyota Camry car, plate no: IKJ123LG',
+    user: [user1, user2].sample,
+    complainant: [c1,c2].sample,
+    status: [0,1,2].sample
+  )
+end
+
 
 crime1 = Crime.create!(
   accuser: 'Ademola Adeleke',

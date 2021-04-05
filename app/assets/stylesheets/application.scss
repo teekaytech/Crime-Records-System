@@ -257,16 +257,16 @@
             margin-right: 1rem;
           }
 
-          .status.purple {
+          .status.pending {
             background: rebeccapurple;
           }
 
-          .status.pink {
-            background: deeppink;
+          .status.approved {
+            background: darkgreen;
           }
 
-          .status.orange {
-            background: orangered;
+          .status.rejected {
+            background: darkred;
           }
         }
 

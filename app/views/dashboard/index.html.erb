@@ -6,7 +6,7 @@
     <div class="cards">
       <div class="cards__single">
         <div class="">
-          <h1>54</h1>
+          <h1><%= @officers %></h1>
           <span class="metacard">Police Officers</span>
         </div>
         <div class="">
@@ -15,8 +15,8 @@
       </div>
       <div class="cards__single">
         <div class="">
-          <h1>79</h1>
-          <span class="metacard">Criminals</span>
+          <h1><%= @crimes %></h1>
+          <span class="metacard">Reported Crimes</span>
         </div>
         <div class="">
           <span class="la la-users icon"></span>
@@ -24,8 +24,8 @@
       </div>
       <div class="cards__single">
         <div class="">
-          <h1>124</h1>
-          <span class="metacard">Categories</span>
+          <h1><%= @complainants %></h1>
+          <span class="metacard">Complainants</span>
         </div>
         <div class="">
           <span class="la la-clipboard-list icon"></span>
@@ -33,8 +33,8 @@
       </div>
       <div class="cards__single">
         <div class="">
-          <h1>544</h1>
-          <span class="metacard">Pending FIRs</span>
+          <h1><%= @firs.count %></h1>
+          <span class="metacard">Received FIRs</span>
         </div>
         <div class="">
           <span class="la la-clipboard-list icon"></span>
@@ -45,7 +45,7 @@
       <div class="projects">
         <div class="projects__card b-none">
           <div class="projects__card-header">
-            <h4>Recent FIRs</h4>
+            <h4>Latest FIRs  (<%= @pending_firs.count %> pending)</h4>
             <button>See all <span class="las la-arrow-right"></span></button>
           </div>
           <div class="projects__card-body">
@@ -53,42 +53,14 @@
               <table width="100%">
                 <thead>
                   <tr>
-                    <td>Project Title</td>
-                    <td>Department</td>
+                    <td>Offence</td>
+                    <td>Date</td>
                     <td>Status</td>
+                    <td>Action</td>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>UI/UX Design</td>
-                    <td>UI Team</td>
-                    <td class="status-col"><span class="status purple"></span>review</td>
-                  </tr>
-                  <tr>
-                    <td>UI/UX Design</td>
-                    <td>UI Team</td>
-                    <td class="status-col"><span class="status pink"></span>in progress</td>
-                  </tr>
-                  <tr>
-                    <td>UI/UX Design</td>
-                    <td>UI Team</td>
-                    <td class="status-col"><span class="status orange"></span>pending</td>
-                  </tr>
-                  <tr>
-                    <td>UI/UX Design</td>
-                    <td>UI Team</td>
-                    <td class="status-col"><span class="status purple"></span>review</td>
-                  </tr>
-                  <tr>
-                    <td>UI/UX Design</td>
-                    <td>UI Team</td>
-                    <td class="status-col"><span class="status pink"></span>in progress</td>
-                  </tr>
-                  <tr>
-                    <td>UI/UX Design</td>
-                    <td>UI Team</td>
-                    <td class="status-col"><span class="status orange"></span>pending</td>
-                  </tr>
+                  <%= all_firs(@firs) %>
                 </tbody>
               </table>
             </div>
