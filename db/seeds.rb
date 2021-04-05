@@ -78,7 +78,7 @@ c2 = Complainant.create!(
 
 1..10.times do
   FirstInformationReport.create!(
-    offense: ['Rape', 'Illegal Possession of Firearms', 'Bugle', 'Stealing', 'Conspiracy to commit murder'].sample,
+    offense: ['Rape case', 'Illegal Possession of Firearms', 'Bugle case', 'Stealing', 'Conspiracy to commit murder'].sample,
     date: Date.today,
     location: ['Ijegun', 'Somolu', 'Bariga', 'Lekki Toll', 'Victoria Island'].sample,
     suspect_details: 'One man named Adebayo Williams with Toyota Camry car, plate no: IKJ123LG',
@@ -88,25 +88,17 @@ c2 = Complainant.create!(
   )
 end
 
+1..15.times do
+  Crime.create!(
+    accuser: ['Ademola Adeleke', 'Oluwatobi Grace', 'Titi Johnson', 'Godswill Ibe', 'Emmanuel Sulaiman'].sample,
+    accused: ['Junior Francis', 'Folorunso Moses', 'Grace Ademokun', 'Salaam Dauda', 'Ifafunke Ifaleke'].sample,
+    unknown_others: ['Driver, Gateman', 'N/A'],
+    date: Time.now,
+    statements: ['Statement story goes here...', 'This is another supernover story', 'The intelligent'].sample,
+    user_id: [1,2].sample
+  )
+end
 
-crime1 = Crime.create!(
-  accuser: 'Ademola Adeleke',
-  accused: 'Junior Francis',
-  unknown_others: 'Driver, Gateman',
-  date: Date.today,
-  statements: 'Statement story goes here...',
-  user: user1
-)
-
-crime2 = Crime.create!(
-  accuser: 'Oluwatobi Grace',
-  accused: 'Salaam Peace',
-  unknown_others: 'N/A',
-  date: Date.today,
-  statements: 'Statement story goes here...',
-  user: user2
-)
-
-CrimeCategory.create!(crime: crime1, category: cat1)
-CrimeCategory.create!(crime: crime1, category: cat2)
-CrimeCategory.create!(crime: crime2, category: cat1)
+CrimeCategory.create!(crime_id: 1, category: cat1)
+CrimeCategory.create!(crime_id: 2, category: cat2)
+CrimeCategory.create!(crime_id: 3, category: cat1)

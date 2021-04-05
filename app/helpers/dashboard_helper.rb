@@ -1,7 +1,10 @@
 module DashboardHelper
   def all_firs(firs)
     content_tag :tbody do
-      firs.collect do |fir|
+      firs.each_with_index do |fir, index|
+
+        break if index == 10
+
         concat(content_tag(:tr) do
           concat(content_tag(:td, fir.offense))
           concat(content_tag(:td, format_time(fir.date, :long, 'N/A')))
@@ -20,5 +23,32 @@ module DashboardHelper
 
   def update_link_class(status)
     status.eql?('approved') ? 'danger' : 'success'
+  end
+
+  def all_crimes(crimes)
+    content_tag(:div) do
+      crimes.each_with_index do |crime, index|
+
+        break if index >= 8
+
+        concat(content_tag(:div, class: 'customers__card-body') do
+          concat(content_tag(:div, class: 'customer') do
+            concat(content_tag(:div, class: 'info') do
+              concat(image_tag asset_path('npf.png'), width: '30px', height: '30px', alt: 'icon')
+              concat(content_tag(:div) do
+                concat(content_tag(:h4, "#{crime.statements}"))
+                concat(
+                  content_tag(
+                    :small,
+                    "#{crime.accuser} (#{format_time(crime.created_at, :short, 'N/A')})"))
+              end)
+            end)
+            concat(content_tag(:div, class: 'contact') do
+              concat(link_to 'view', dashboard_index_path, class: 'btn btn-dark')
+            end)
+          end)
+        end)
+      end
+    end
   end
 end

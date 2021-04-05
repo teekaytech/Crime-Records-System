@@ -17,7 +17,8 @@
     <img src="<%= asset_path('npf.png') %>" alt="user-icon" srcset="">
     <div class="">
       <h5><%= current_user.firstname %></h5>
-      <small><%= current_user.admin ? 'Super Admin' : 'Police Officer' %></small>
+      <small><%= current_user.admin ? 'Admin' : 'Police' %></small>
+      <small class="text-sm-end"><%= link_to 'Logout', destroy_user_session_path, method: :delete  %></small>
     </div>
   </div>
 </header>

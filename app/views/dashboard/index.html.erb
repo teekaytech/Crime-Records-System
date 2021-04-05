@@ -15,7 +15,7 @@
       </div>
       <div class="cards__single">
         <div class="">
-          <h1><%= @crimes %></h1>
+          <h1><%= @crimes.count %></h1>
           <span class="metacard">Reported Crimes</span>
         </div>
         <div class="">
@@ -71,89 +71,10 @@
       <div class="customers">
         <div class="customers__card">
           <div class="customers__card-header">
-            <h4>New Customer</h4>
+            <h4>Latest Crimes</h4>
             <button>See all <span class="las la-arrow-right"></span></button>
           </div>
-          <div class="customers__card-body">
-            <div class="customer">
-              <div class="info">
-                <%= image_tag asset_path('npf.png'), width: '40px', height: '40px', alt: 'icon' %>
-                <div>
-                  <h4>Lewis S. Cunningham</h4>
-                  <small>CEO Excerpt</small>
-                </div>
-              </div>
-              <div class="contact">
-                <span class="las la-user-circle"></span>
-                <span class="las la-comment"></span>
-                <span class="las la-phone"></span>
-              </div>
-            </div>
-          </div>
-          <div class="customers__card-body">
-            <div class="customer">
-              <div class="info">
-                <%= image_tag asset_path('npf.png'), width: '40px', height: '40px', alt: 'icon' %>
-                <div>
-                  <h4>Lewis S. Cunningham</h4>
-                  <small>CEO Excerpt</small>
-                </div>
-              </div>
-              <div class="contact">
-                <span class="las la-user-circle"></span>
-                <span class="las la-comment"></span>
-                <span class="las la-phone"></span>
-              </div>
-            </div>
-          </div>
-          <div class="customers__card-body">
-            <div class="customer">
-              <div class="info">
-                <%= image_tag asset_path('npf.png'), width: '40px', height: '40px', alt: 'icon' %>
-                <div>
-                  <h4>Lewis S. Cunningham</h4>
-                  <small>CEO Excerpt</small>
-                </div>
-              </div>
-              <div class="contact">
-                <span class="las la-user-circle"></span>
-                <span class="las la-comment"></span>
-                <span class="las la-phone"></span>
-              </div>
-            </div>
-          </div>
-          <div class="customers__card-body">
-            <div class="customer">
-              <div class="info">
-                <%= image_tag asset_path('npf.png'), width: '40px', height: '40px', alt: 'icon' %>
-                <div>
-                  <h4>Lewis S. Cunningham</h4>
-                  <small>CEO Excerpt</small>
-                </div>
-              </div>
-              <div class="contact">
-                <span class="las la-user-circle"></span>
-                <span class="las la-comment"></span>
-                <span class="las la-phone"></span>
-              </div>
-            </div>
-          </div>
-          <div class="customers__card-body">
-            <div class="customer">
-              <div class="info">
-                <%= image_tag asset_path('npf.png'), width: '40px', height: '40px', alt: 'icon' %>
-                <div>
-                  <h4>Lewis S. Cunningham</h4>
-                  <small>CEO Excerpt</small>
-                </div>
-              </div>
-              <div class="contact">
-                <span class="las la-user-circle"></span>
-                <span class="las la-comment"></span>
-                <span class="las la-phone"></span>
-              </div>
-            </div>
-          </div>
+          <%= all_crimes(@crimes) %>
         </div>
       </div>
     </section>
