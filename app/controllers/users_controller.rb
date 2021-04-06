@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: %i[show index edit update destroy]
-  before_action :get_user, only: %i[index edit show]
+  before_action :get_user, only: %i[edit show]
 
   def index
+    @users = User.all.paginate(page: params[:page], per_page: 15)
   end
 
   def new

@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
 `rails db:drop`
 `rails db:create`
@@ -19,7 +20,6 @@ user1 = User.create!(
   gender: 'Male',
   phone: '07085516354',
   address: 'Lagos, Nigeria',
-  avatar: 'npf.png'
 )
 
 user2 = User.create!(
@@ -31,8 +31,20 @@ user2 = User.create!(
   gender: 'Male',
   phone: '09077276262',
   address: 'Orile Iganmu, Lagos',
-  avatar: 'npf.png'
 )
+
+1..30.times do
+  user2 = User.create!(
+    email: Faker::Internet.email,
+    password: 'password',
+    admin: [false, true].sample,
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name ,
+    gender: %i[Male Female].sample,
+    phone: Faker::Number.number(digits: 11),
+    address: Faker::Address.full_address
+  )
+end
 
 cat1 = Category.create!(user: user1, name: 'Financial')
 cat2 = Category.create!(user: user1, name: 'Driving Under the Influence')

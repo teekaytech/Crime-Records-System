@@ -19,7 +19,10 @@
         <% end %>
       </li>
       <li class="menu-list">
-        <a href="#"><span class="las la-user-circle"></span><span class="bar-text">Police Officers</span></a>
+        <%= link_to users_path, class: '' do %>
+          <span class="las la-users"></span>
+          <span class="bar-text">Users Management</span>
+        <% end %>
       </li>
       <li class="menu-list">
         <a href="#"><span class="las la-users"></span><span class="bar-text">Criminals/FIR</span></a>
