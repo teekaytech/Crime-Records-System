@@ -42,7 +42,8 @@ user2 = User.create!(
     lastname: Faker::Name.last_name ,
     gender: %i[Male Female].sample,
     phone: Faker::Number.number(digits: 11),
-    address: Faker::Address.full_address
+    address: Faker::Address.full_address,
+    active: [true, false].sample
   )
 end
 

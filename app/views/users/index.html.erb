@@ -3,7 +3,7 @@
   <%= render './dashboard/header', title: 'All Users' %>
   <main>
     <%= render 'layouts/alerts' %>
-    <%= render 'nav_others' %>
+    <%= render 'nav_users' %>
     <div class="bg-white p-2 ">
       <table class="table">
         <thead>
@@ -12,18 +12,42 @@
           <th scope="col">Full Name</th>
           <th scope="col">Email</th>
           <th scope="col">Role</th>
+          <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         <% @users.each do |user| %>
           <% next if user.eql?(current_user) %>
-          <tr>
-            <th scope="row"><%= user.id %></th>
+          <tr class="mb-3">
+            <th scope="row"><%= user.id.to_s.rjust(4, "0") %></th>
             <td><%= "#{user.firstname.titlecase} #{user.lastname}" %></td>
             <td><%= user.email %></td>
-            <td><%= user.admin ? 'Admin Officer' : 'Police Officer' %></td>
-            <td>@mdo</td>
+            <td>
+              <%= user.admin ? 'Admin Officer' : 'Police Officer' %>
+              <%= link_to toggle_user_role_path(user), method: :post do %>
+                <% badge = user.admin ? 'success' : 'warning' %>
+                <span class="badge bg-<%= badge %>"><span class="las la-road"></span></span>
+              <% end %>
+            </td>
+            <td>
+              <% if user.active %>
+                <span class="badge bg-success">Active</span>
+                <%= link_to  toggle_user_status_path(user), class: 'badge bg-danger', method: :post do %>
+                  <span class="badge bg-danger"><span class="las la-toggle-off"></span></span>
+                <% end %>
+              <% else %>
+                <span class="badge bg-danger">Inactive</span>
+                <%= link_to toggle_user_status_path(user), class: 'badge bg-success', method: :post do %>
+                  <span class="badge bg-success"><span class="las la-toggle-on"></span></span>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user_path(user) do %>
+                <span class="badge bg-warning"><span class="las la-eye"></span> View</span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
         </tbody>

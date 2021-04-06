@@ -1,51 +1,15 @@
-<h1>User registration page</h1>
-<%= form_for @user do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'New User' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav_users', user: @user %>
+    <div class="bg-white p-2 ">
+      <h1>User registration page</h1>
+      <%= render 'form', user: @user %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
   </div>
-
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.label :admin %>
-    <%= f.check_box :admin %>
-  </div>
-
-  <div>
-    <%= f.label :firstname %>
-    <%= f.text_field :firstname %>
-  </div>
-
-  <div>
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
-  </div>
-
-  <div>
-    <%= f.label :gender %>
-    <%= f.text_field :gender %>
-  </div>
-
-  <div>
-    <%= f.label :phone %>
-    <%= f.number_field :phone %>
-  </div>
-
-  <div>
-    <%= f.label :address %>
-    <%= f.email_field :address %>
-  </div>
-
-  <div>
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </div>
-
-  <div>
-    <%= f.submit 'Crate Account' %>
-  </div>
-<% end %>
+</div>
