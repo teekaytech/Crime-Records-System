@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
     if !!@user && @user.authenticate(params[:password])
       helpers.log_in(@user)
+      flash[:success] = 'Login successful! Welcome your your dashboard.'
       redirect_to dashboard_index_path
     else
       message = 'Something went wrong! Please check your username and password.'
