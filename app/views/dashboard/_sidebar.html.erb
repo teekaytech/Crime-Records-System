@@ -18,17 +18,22 @@
           </span><span class="bar-text">Profile</span>
         <% end %>
       </li>
-      <li class="menu-list">
-        <%= link_to users_path, class: '' do %>
-          <span class="las la-users"></span>
-          <span class="bar-text">Users Management</span>
+      <% if current_user.admin %>
+        <li class="menu-list">
+          <%= link_to users_path, class: '' do %>
+            <span class="las la-users"></span>
+            <span class="bar-text">Users Management</span>
+          <% end %>
+        </li>
         <% end %>
+      <li class="menu-list">
+        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">First Information Reports</span></a>
       </li>
       <li class="menu-list">
-        <a href="#"><span class="las la-users"></span><span class="bar-text">Criminals/FIR</span></a>
+        <a href="#"><span class="las la-assistive-listening-systems"></span><span class="bar-text">Crimes</span></a>
       </li>
       <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Report</span></a>
+        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Reports</span></a>
       </li>
       <li class="menu-list">
         <%= link_to logout_path, method: :delete do %>

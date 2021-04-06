@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
+  post '/users/:id/toggle_role', to: 'users#toggle_role', as: 'toggle_user_role'
+  post '/users/:id/toggle_status', to: 'users#toggle_status', as: 'toggle_user_status'
   delete '/users/:id', to: 'users#destroy', as: 'destroy_user'
 
 
