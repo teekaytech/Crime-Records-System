@@ -25,9 +25,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'cloudinary'
 
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-# gem 'faker'
+gem 'faker'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

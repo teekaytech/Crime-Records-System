@@ -2,9 +2,6 @@ module DashboardHelper
   def all_firs(firs)
     content_tag :tbody do
       firs.each_with_index do |fir, index|
-
-        break if index == 10
-
         concat(content_tag(:tr) do
           concat(content_tag(:td, fir.offense))
           concat(content_tag(:td, format_time(fir.date, :long, 'N/A')))
@@ -28,9 +25,6 @@ module DashboardHelper
   def all_crimes(crimes)
     content_tag(:div) do
       crimes.each_with_index do |crime, index|
-
-        break if index >= 8
-
         concat(content_tag(:div, class: 'customers__card-body') do
           concat(content_tag(:div, class: 'customer') do
             concat(content_tag(:div, class: 'info') do

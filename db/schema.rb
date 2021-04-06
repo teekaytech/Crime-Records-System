@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_141131) do
     t.string "gender"
     t.string "phone"
     t.string "address"
-    t.string "avatar"
+    t.string "avatar", default: "https://res.cloudinary.com/teekaytech/image/upload/v1607171620/sample.jpg"
     t.boolean "active", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end

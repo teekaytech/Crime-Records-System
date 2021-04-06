@@ -1,0 +1,38 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'All Users' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav_others' %>
+    <div class="bg-white p-2 ">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <% next if user.eql?(current_user) %>
+          <tr>
+            <th scope="row"><%= user.id %></th>
+            <td><%= "#{user.firstname.titlecase} #{user.lastname}" %></td>
+            <td><%= user.email %></td>
+            <td><%= user.admin ? 'Admin Officer' : 'Police Officer' %></td>
+            <td>@mdo</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+    </div>
+
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>
