@@ -7,10 +7,16 @@
   <div class="sidebar__menu">
     <ul>
       <li class="menu-list">
-        <a href="#" class="active"><span class="las la-igloo"></span><span class="bar-text">Dashboard</span></a>
+        <%= link_to dashboard_index_path, class: 'active' do %>
+          <span class="las la-igloo"></span>
+          <span class="bar-text">Dashboard</span>
+        <% end %>
       </li>
       <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Police Station</span></a>
+        <%= link_to user_path(current_user), class: '' do %>
+          <span class="las la-user-circle"></span>
+          </span><span class="bar-text">Profile</span>
+        <% end %>
       </li>
       <li class="menu-list">
         <a href="#"><span class="las la-user-circle"></span><span class="bar-text">Police Officers</span></a>

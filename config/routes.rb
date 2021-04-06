@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   resources :users
   resources :dashboard, only: [:index]
 
+
   get '/', to: 'sessions#index'
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
+
+  delete '/users/:id', to: 'users#destroy', as: 'destroy_user'
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
