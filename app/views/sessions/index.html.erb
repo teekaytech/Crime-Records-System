@@ -7,16 +7,12 @@
   <main class="text-center">
     <div><%= image_tag asset_path('npf.png'), class: 'img-fluid' %></div>
     <h5 class="fst-italic">...an automated crime record information system</h5>
-
     <div class="getting-started py-3 mt-4">
       <% if current_user %>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-success' %>
+        <%= link_to 'Sign Out', '#', method: :delete, class: 'btn btn-success' %>
       <% else %>
-        <%#= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-dark d-inline-block mx-2' %>
-        <h5><%= link_to 'Get Started', new_user_session_path, class: 'btn btn-success d-inline-block mx-2' %></h5>
+        <h5><%= link_to 'Get Started', login_path, class: 'btn btn-success d-inline-block mx-2' %></h5>
       <% end %>
-
-      <%#= link_to 'Cateogries', categories_path, class: 'btn btn-dark d-inline-block mx-2' %>
     </div>
   </main>
   <%= render './layouts/footer' %>

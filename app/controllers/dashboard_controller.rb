@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-  before_action :authenticate_user!
 
   def index
     @officers = User.where(admin: false).all.count

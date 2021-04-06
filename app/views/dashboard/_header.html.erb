@@ -18,7 +18,7 @@
     <div class="">
       <h5><%= current_user.firstname %></h5>
       <small><%= current_user.admin ? 'Admin' : 'Police' %></small>
-      <small class="text-sm-end"><%= link_to 'Logout', destroy_user_session_path, method: :delete  %></small>
+      <small class="text-sm-end"><%= link_to 'Logout', logout_path, method: :delete  %></small>
     </div>
   </div>
 </header>
