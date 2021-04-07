@@ -20,12 +20,12 @@
         <% @users.each do |user| %>
           <% next if user.eql?(current_user) %>
           <tr class="mb-3">
-            <th scope="row"><%= user.id.to_s.rjust(4, "0") %></th>
+            <th scope="row"><%= id_formatter(user.id) %></th>
             <td><%= "#{user.firstname.titlecase} #{user.lastname}" %></td>
             <td><%= user.email %></td>
             <td>
               <%= user.admin ? 'Admin Officer' : 'Police Officer' %>
-              <%= link_to toggle_user_role_path(user), method: :post do %>
+              <%= link_to toggle_user_role_path(user), method: :post, data: { confirm: 'Change User Role?' } do %>
                 <% badge = user.admin ? 'success' : 'warning' %>
                 <span class="badge bg-<%= badge %>"><span class="las la-road"></span></span>
               <% end %>
@@ -33,7 +33,7 @@
             <td>
               <% if user.active %>
                 <span class="badge bg-success">Active</span>
-                <%= link_to  toggle_user_status_path(user), class: 'badge bg-danger', method: :post do %>
+                <%= link_to  toggle_user_status_path(user), class: 'badge bg-danger', method: :post, data: { confirm: 'Are you sure?' } do %>
                   <span class="badge bg-danger"><span class="las la-toggle-off"></span></span>
                 <% end %>
               <% else %>

@@ -1,25 +1,27 @@
 class FirstInformationReportsController < ApplicationController
-  before_action :set_first_information_report, only: %i[ show edit update destroy ]
+  before_action :authenticate_user
+  before_action :set_first_information_report, only: %i[show edit update destroy approve reject]
 
-  # GET /first_information_reports or /first_information_reports.json
   def index
-    @first_information_reports = FirstInformationReport.all
+    @firs = FirstInformationReport
+      .where(active: TRUE)
+      .includes(%i[user complainant])
+      .paginate(page: params[:page], per_page: 10)
+      .order('created_at DESC')
   end
 
-  # GET /first_information_reports/1 or /first_information_reports/1.json
   def show
   end
 
-  # GET /first_information_reports/new
   def new
     @first_information_report = FirstInformationReport.new
   end
 
-  # GET /first_information_reports/1/edit
   def edit
+    @users = User.where(active: TRUE).all
+    @complainants = Complainant.where(active: TRUE).all
   end
 
-  # POST /first_information_reports or /first_information_reports.json
   def create
     @first_information_report = FirstInformationReport.new(first_information_report_params)
 
@@ -34,9 +36,9 @@ class FirstInformationReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /first_information_reports/1 or /first_information_reports/1.json
   def update
     respond_to do |format|
+      p first_information_report_params
       if @first_information_report.update(first_information_report_params)
         format.html { redirect_to @first_information_report, notice: "First information report was successfully updated." }
         format.json { render :show, status: :ok, location: @first_information_report }
@@ -47,23 +49,41 @@ class FirstInformationReportsController < ApplicationController
     end
   end
 
-  # DELETE /first_information_reports/1 or /first_information_reports/1.json
   def destroy
-    @first_information_report.destroy
+    @first_information_report.active = false
+    @first_information_report.save
     respond_to do |format|
-      format.html { redirect_to first_information_reports_url, notice: "First information report was successfully destroyed." }
+      format.html { redirect_to first_information_reports_url, notice: "FIR with ID: #{@first_information_report.id} was successfully deleted." }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_first_information_report
-      @first_information_report = FirstInformationReport.find(params[:id])
+  def approve
+    @first_information_report.approved!
+    if @first_information_report.save
+      redirect_to first_information_reports_path, notice: "FIR with ID: #{@first_information_report.id} approved successfully!"
+    else
+      redirect_to first_information_report_path, notice: "FIR with ID: #{@first_information_report.id} approval failed. Please, try again."
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def first_information_report_params
-      params.require(:first_information_report).permit(:user_id, :complainant_id, :offense, :date, :location, :suspect_details)
+  def reject
+    @first_information_report.rejected!
+    if @first_information_report.save
+      redirect_to first_information_reports_path, notice: "FIR with ID: #{@first_information_report.id} rejected successfully!"
+    else
+      redirect_to first_information_report_path, notice: "FIR with ID: #{@first_information_report.id} rejection failed. Please, try again."
     end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_first_information_report
+    @first_information_report = FirstInformationReport.find(params[:id])
+  end
+
+  def first_information_report_params
+    params.require(:first_information_report).permit(:user_id, :complainant_id, :offense, :date, :location,
+                                                     :suspect_details, :status, :active)
+  end
 end

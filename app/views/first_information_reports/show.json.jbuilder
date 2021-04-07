@@ -1,1 +1,0 @@
-json.partial! "first_information_reports/first_information_report", first_information_report: @first_information_report

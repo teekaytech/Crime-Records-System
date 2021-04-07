@@ -27,7 +27,10 @@
         </li>
         <% end %>
       <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">First Information Reports</span></a>
+        <%= link_to first_information_reports_path, class: '' do %>
+          <span class="las la-clipboard-list"></span>
+          <span class="bar-text">First Information Reports</span>
+        <% end %>
       </li>
       <li class="menu-list">
         <a href="#"><span class="las la-assistive-listening-systems"></span><span class="bar-text">Crimes</span></a>
