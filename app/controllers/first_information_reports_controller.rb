@@ -15,11 +15,13 @@ class FirstInformationReportsController < ApplicationController
 
   def new
     @first_information_report = FirstInformationReport.new
+    @users = User.all_active
+    @complainants = Complainant.all_active
   end
 
   def edit
-    @users = User.where(active: TRUE).all
-    @complainants = Complainant.where(active: TRUE).all
+    @users = User.all_active
+    @complainants = Complainant.all_active
   end
 
   def create

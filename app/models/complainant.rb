@@ -5,4 +5,6 @@ class Complainant < ApplicationRecord
             length: { minimum: 3 }
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false },
             format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  scope :all_active, -> { where(active: TRUE).all }
 end

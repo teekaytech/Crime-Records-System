@@ -5,4 +5,6 @@ class FirstInformationReport < ApplicationRecord
 
   enum status: %i[pending approved rejected]
 
+  scope :all_active, -> { where(active: TRUE).all }
+
 end
