@@ -1,47 +1,47 @@
 <%= form_with(model: first_information_report) do |form| %>
-  <% if first_information_report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(first_information_report.errors.count, "error") %> prohibited this first_information_report from being saved:</h2>
+  <div class="form-group text-start">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :user_id, 'Reporting Officer' %>
+        <%= select_tag 'first_information_report[user_id]',
+                       options_from_collection_for_select(users, :id,
+                                                          ->(ob) {"#{ob.firstname} #{ob.lastname} (#{ob.id})"}),
+                       prompt: "Choose", class: 'form-control', autofocus: true %>
+      </div>
 
-      <ul>
-        <% first_information_report.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+      <div class="col-md-6">
+        <%= form.label :complainant_id %>
+        <%= select_tag 'first_information_report[complainant_id]',
+                       options_from_collection_for_select(complainants, :id,
+                                                          ->(ob) {"#{ob.firstname} #{ob.surname} (#{ob.id})"}),
+                       prompt: "Choose", class: 'form-control' %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+    <div class="row mb-3 mx-1">
+      <%= form.label :offense %>
+      <%= form.text_area :offense, required: true, autocomplete: "text", class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :complainant_id %>
-    <%= form.text_field :complainant_id %>
-  </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :date, class: 'd-block mb-2' %>
+        <%= form.datetime_select :date, required: true %>
+      </div>
 
-  <div class="field">
-    <%= form.label :offense %>
-    <%= form.text_field :offense %>
-  </div>
+      <div class="col-md-6">
+        <%= form.label :location %>
+        <%= form.text_field :location, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
-  </div>
+    <div class="row mb-3 mx-1">
+      <%= form.label :suspect_details %>
+      <%= form.text_area :suspect_details, required: true, autocomplete: "text", class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div class="field">
-    <%= form.label :suspect_details %>
-    <%= form.text_field :suspect_details %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="text-center my-4">
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>

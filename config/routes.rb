@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
   root to: 'sessions#index'
 
-  # resources :first_information_reports
-  # resources :complainants
+
+  resources :complainants
   # resources :crimes
   # resources :categories
-  resources :users
   resources :dashboard, only: [:index]
 
 
@@ -15,9 +14,14 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
+  resources :users
   post '/users/:id/toggle_role', to: 'users#toggle_role', as: 'toggle_user_role'
   post '/users/:id/toggle_status', to: 'users#toggle_status', as: 'toggle_user_status'
   delete '/users/:id', to: 'users#destroy', as: 'destroy_user'
+
+  resources :first_information_reports
+  post '/first_information_reports/:id/approve', to: 'first_information_reports#approve', as: 'approve_fir'
+  post '/first_information_reports/:id/reject', to: 'first_information_reports#reject', as: 'reject_fir'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
