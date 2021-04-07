@@ -14,4 +14,6 @@ class User < ApplicationRecord
   def username
     self.email.split('@')[0].capitalize
   end
+
+  scope :all_active, -> { where(active: TRUE).all }
 end
