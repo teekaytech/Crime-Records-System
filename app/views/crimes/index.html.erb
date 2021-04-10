@@ -1,39 +1,63 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Crimes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Category</th>
-      <th>Accuser</th>
-      <th>Accused</th>
-      <th>Unknown others</th>
-      <th>Date</th>
-      <th>Statements</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @crimes.each do |crime| %>
-      <tr>
-        <td><%= crime.user_id %></td>
-        <td><%= crime.category_id %></td>
-        <td><%= crime.accuser %></td>
-        <td><%= crime.accused %></td>
-        <td><%= crime.unknown_others %></td>
-        <td><%= crime.date %></td>
-        <td><%= crime.statements %></td>
-        <td><%= link_to 'Show', crime %></td>
-        <td><%= link_to 'Edit', edit_crime_path(crime) %></td>
-        <td><%= link_to 'Destroy', crime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Crime', new_crime_path %>
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Crimes' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'categories/nav', text: ['Add New Crime', 'All Crimes'], url: [new_crime_path, crimes_path] %>
+    <div class="bg-white p-2 ">
+      <h5 class="my-4">All Crimes</h5>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Registered By:</th>
+          <th scope="col">Categories</th>
+          <th scope="col">Accuser</th>
+          <th scope="col">Acussed</th>
+          <th scope="col">Date</th>
+          <th scope="col" colspan="3" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <% @crimes.each do |crime| %>
+          <tr>
+            <td><%= crime.id %></td>
+            <td><%= crime.user.full_name %></td>
+            <td>
+              <% if crime.categories.count <= 0 %>
+                <em>Not registered.</em>
+              <% else %>
+                <% crime.categories.each do  |category|%>
+                  <li><%= category.name %></li>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= crime.accuser %></td>
+            <td><%= crime.accused %></td>
+            <td><%= format_time(crime.date) %></td>
+            <td>
+              <%= link_to crime, class: 'badge bg-dark'  do %>
+                <span class="las la-eye"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_crime_path(crime), class: 'badge bg-warning' do %>
+                <span class="las la-user-edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to crime, method: :delete, data: { confirm: 'Delete Crime?' }, class: 'badge bg-danger' do %>
+                <span class="las la-trash"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @crimes, renderer: BootstrapPagination::Rails %>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

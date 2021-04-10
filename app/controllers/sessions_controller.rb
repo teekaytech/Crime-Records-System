@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
 
-    if !!@user && @user.authenticate(params[:password])
+    if !@user.nil? && @user.authenticate(params[:password])
       helpers.log_in(@user)
       flash[:success] = 'Login successful! Welcome your your dashboard.'
       redirect_to dashboard_index_path

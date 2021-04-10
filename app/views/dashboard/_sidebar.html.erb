@@ -33,14 +33,29 @@
         <% end %>
       </li>
       <li class="menu-list">
-        <a href="#"><span class="las la-assistive-listening-systems"></span><span class="bar-text">Crimes</span></a>
+        <%= link_to categories_path, class: '' do %>
+          <span class="las la-columns"></span>
+          <span class="bar-text">Crime Categories</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to crimes_path, class: '' do %>
+          <span class="las la-assistive-listening-systems"></span>
+          <span class="bar-text">Crimes</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to crimes_path, class: '' do %>
+          <span class="las la-user-friends"></span>
+          <span class="bar-text">Complainants</span>
+        <% end %>
       </li>
       <li class="menu-list">
         <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Reports</span></a>
       </li>
       <li class="menu-list">
         <%= link_to logout_path, method: :delete do %>
-          <span class="las la-clipboard-list"></span><span class="bar-text">Logout</span>
+          <span class="las la-long-arrow-alt-left"></span><span class="bar-text">Logout</span>
         <% end %>
       </li>
     </ul>

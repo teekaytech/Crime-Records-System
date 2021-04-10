@@ -105,7 +105,7 @@ end
   Crime.create!(
     accuser: ['Ademola Adeleke', 'Oluwatobi Grace', 'Titi Johnson', 'Godswill Ibe', 'Emmanuel Sulaiman'].sample,
     accused: ['Junior Francis', 'Folorunso Moses', 'Grace Ademokun', 'Salaam Dauda', 'Ifafunke Ifaleke'].sample,
-    unknown_others: ['Driver, Gateman', 'N/A'],
+    unknown_others: ['Driver, Gateman', 'N/A'].sample,
     date: Time.now,
     statements: ['Statement story goes here...', 'This is another supernover story', 'The intelligent'].sample,
     user_id: [1,2].sample

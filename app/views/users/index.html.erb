@@ -33,12 +33,12 @@
             <td>
               <% if user.active %>
                 <span class="badge bg-success">Active</span>
-                <%= link_to  toggle_user_status_path(user), class: 'badge bg-danger', method: :post, data: { confirm: 'Are you sure?' } do %>
+                <%= link_to  toggle_user_status_path(user), class: 'badge bg-danger', method: :post, data: { confirm: 'Deactivate user?' } do %>
                   <span class="badge bg-danger"><span class="las la-toggle-off"></span></span>
                 <% end %>
               <% else %>
                 <span class="badge bg-danger">Inactive</span>
-                <%= link_to toggle_user_status_path(user), class: 'badge bg-success', method: :post do %>
+                <%= link_to toggle_user_status_path(user), class: 'badge bg-success', method: :post, data: { confirm: 'Activate user?' } do %>
                   <span class="badge bg-success"><span class="las la-toggle-on"></span></span>
                 <% end %>
               <% end %>

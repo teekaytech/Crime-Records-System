@@ -10,8 +10,7 @@ class FirstInformationReportsController < ApplicationController
       .order('created_at DESC')
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @first_information_report = FirstInformationReport.new
@@ -29,7 +28,9 @@ class FirstInformationReportsController < ApplicationController
 
     respond_to do |format|
       if @first_information_report.save
-        format.html { redirect_to @first_information_report, notice: "First information report was successfully created." }
+        format.html do
+          redirect_to @first_information_report, notice: 'First information report was successfully created.'
+        end
         format.json { render :show, status: :created, location: @first_information_report }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +43,9 @@ class FirstInformationReportsController < ApplicationController
     respond_to do |format|
       p first_information_report_params
       if @first_information_report.update(first_information_report_params)
-        format.html { redirect_to @first_information_report, notice: "First information report was successfully updated." }
+        format.html do
+          redirect_to @first_information_report, notice: 'First information report was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @first_information_report }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +58,10 @@ class FirstInformationReportsController < ApplicationController
     @first_information_report.active = false
     @first_information_report.save
     respond_to do |format|
-      format.html { redirect_to first_information_reports_url, notice: "FIR with ID: #{@first_information_report.id} was successfully deleted." }
+      format.html do
+        redirect_to first_information_reports_url,
+                    notice: "FIR with ID: #{@first_information_report.id} was successfully deleted."
+      end
       format.json { head :no_content }
     end
   end
@@ -63,22 +69,27 @@ class FirstInformationReportsController < ApplicationController
   def approve
     @first_information_report.approved!
     if @first_information_report.save
-      redirect_to first_information_reports_path, notice: "FIR with ID: #{@first_information_report.id} approved successfully!"
+      redirect_to first_information_reports_path,
+                  notice: "FIR with ID: #{@first_information_report.id} approved successfully!"
     else
-      redirect_to first_information_report_path, notice: "FIR with ID: #{@first_information_report.id} approval failed. Please, try again."
+      redirect_to first_information_report_path,
+                  notice: "FIR with ID: #{@first_information_report.id} approval failed. Please, try again."
     end
   end
 
   def reject
     @first_information_report.rejected!
     if @first_information_report.save
-      redirect_to first_information_reports_path, notice: "FIR with ID: #{@first_information_report.id} rejected successfully!"
+      redirect_to first_information_reports_path,
+                  notice: "FIR with ID: #{@first_information_report.id} rejected successfully!"
     else
-      redirect_to first_information_report_path, notice: "FIR with ID: #{@first_information_report.id} rejection failed. Please, try again."
+      redirect_to first_information_report_path,
+                  notice: "FIR with ID: #{@first_information_report.id} rejection failed. Please, try again."
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_first_information_report
     @first_information_report = FirstInformationReport.find(params[:id])

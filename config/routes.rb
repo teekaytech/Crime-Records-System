@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
 
   resources :complainants
-  # resources :crimes
-  # resources :categories
+  resources :crimes
   resources :dashboard, only: [:index]
 
 
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   post '/first_information_reports/:id/approve', to: 'first_information_reports#approve', as: 'approve_fir'
   post '/first_information_reports/:id/reject', to: 'first_information_reports#reject', as: 'reject_fir'
 
-
+  resources :categories
+  post 'categories/:id/activate', to: 'categories#activate', as: 'activate_category'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
