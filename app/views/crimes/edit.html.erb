@@ -3,8 +3,9 @@
   <%= render './dashboard/header', title: 'CRIMES' %>
   <main>
     <%= render 'layouts/alerts' %>
+    <%= render 'layouts/form_errors', obj: @crime %>
     <%= render 'categories/nav', text: ['Add New Crime', 'All Crimes'], url: [new_crime_path, crimes_path] %>
-    <div class="bg-white p-2">
+    <div class="bg-white p-2 text-center">
       <h5 class="my-4">Editing Crime</h5>
 
       <%= render 'form', crime: @crime %>
