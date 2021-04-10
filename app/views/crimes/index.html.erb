@@ -24,10 +24,10 @@
             <td><%= crime.user.full_name %></td>
             <td>
               <% if crime.categories.count <= 0 %>
-                <em>Not registered.</em>
+                <em>not registered</em>
               <% else %>
                 <% crime.categories.each do  |category|%>
-                  <li><%= category.name %></li>
+                  <li class="border-bottom"><%= category.name %></li>
                 <% end %>
               <% end %>
             </td>
@@ -45,7 +45,9 @@
               <% end %>
             </td>
             <td>
-              <%= link_to crime, method: :delete, data: { confirm: 'Delete Crime?' }, class: 'badge bg-danger' do %>
+              <%= link_to crime, method: :delete,
+                          data: { confirm: 'Delete Crime? This action cannot be reversed.' },
+                          class: 'badge bg-danger' do %>
                 <span class="las la-trash"></span>
               <% end %>
             </td>

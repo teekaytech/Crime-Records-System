@@ -1,5 +1,6 @@
 class CrimesController < ApplicationController
   before_action :set_crime, only: %i[show edit update destroy]
+  before_action :set_categories, only: %i[new edit]
 
   def index
     @crimes = Crime
@@ -17,37 +18,31 @@ class CrimesController < ApplicationController
   def edit; end
 
   def create
-    @crime = Crime.new(crime_params)
-
-    respond_to do |format|
-      if @crime.save
-        format.html { redirect_to @crime, notice: 'Crime was successfully created.' }
-        format.json { render :show, status: :created, location: @crime }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @crime.errors, status: :unprocessable_entity }
-      end
+    @crime = current_user.crimes.build(crime_params)
+    if helpers.check_category(params[:categories])
+      redirect_to new_crime_path(@crime), notice: 'Please select at least one category'
+    elsif @crime.create_with_categories(params[:categories])
+      redirect_to @crime, notice: 'Crime was successfully created.'
+    else
+      render :new, notice: 'Something went wrong. Please try again.'
     end
   end
 
   def update
-    respond_to do |format|
-      if @crime.update(crime_params)
-        format.html { redirect_to @crime, notice: 'Crime was successfully updated.' }
-        format.json { render :show, status: :ok, location: @crime }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @crime.errors, status: :unprocessable_entity }
-      end
+    if helpers.check_category(params[:categories])
+      redirect_to edit_crime_path(@crime), notice: 'Please select at least one category'
+    end
+
+    if @crime.update_with_categories(params[:categories], crime_params)
+      redirect_to @crime, notice: 'Crime was successfully updated.'
+    else
+      render :edit, notice: 'Something went wrong. Please, try again.'
     end
   end
 
   def destroy
     @crime.destroy
-    respond_to do |format|
-      format.html { redirect_to crimes_url, notice: 'Crime was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to crimes_url, notice: "Crime with ID: #{@crime.id} was successfully deleted."
   end
 
   private
@@ -56,7 +51,11 @@ class CrimesController < ApplicationController
     @crime = Crime.includes(%i[user categories]).find(params[:id])
   end
 
+  def set_categories
+    @categories = Category.where(active: TRUE).all
+  end
+
   def crime_params
-    params.require(:crime).permit(:user_id, :category_id, :accuser, :accused, :unknown_others, :date, :statements)
+    params.require(:crime).permit(:user_id, :accuser, :accused, :unknown_others, :date, :statements)
   end
 end

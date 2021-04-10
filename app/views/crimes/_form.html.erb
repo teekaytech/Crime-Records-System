@@ -1,52 +1,47 @@
 <%= form_with(model: crime) do |form| %>
-  <% if crime.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(crime.errors.count, "error") %> prohibited this crime from being saved:</h2>
-
-      <ul>
-        <% crime.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="form-group text-start">
+    <div class="row mb-3">
+      <div class="">
+        <%= form.label :categories, 'Categories (Click and hold the `Ctrl` button to select more than one)' %>
+        <%= select_tag :categories,
+                       options_from_collection_for_select(@categories, :id, :name), multiple: true,
+                       class: 'form-control', autofocus: true %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :accuser %>
+        <%= form.text_field :accuser, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
-  </div>
+        <div class="col-md-6">
+        <%= form.label :accused %>
+        <%= form.text_field :accused, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :accuser %>
-    <%= form.text_field :accuser %>
-  </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :unknown_others %>
+        <%= form.text_area :unknown_others, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :accused %>
-    <%= form.text_field :accused %>
-  </div>
+      <div class="col-md-6">
+        <%= form.label :statements %>
+        <%= form.text_area :statements, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :unknown_others %>
-    <%= form.text_field :unknown_others %>
-  </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :date, class: 'd-block' %>
+        <%= form.datetime_select :date, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :statements %>
-    <%= form.text_field :statements %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="text-center my-4">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
