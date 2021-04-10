@@ -47,7 +47,9 @@
         <div class="projects__card b-none">
           <div class="projects__card-header">
             <h4>Latest FIRs  (<%= @pending_firs.count %> pending)</h4>
-            <button>See all <span class="las la-arrow-right"></span></button>
+            <%= link_to first_information_reports_path do %>
+              <button>See all <span class="las la-arrow-right"></span></button>
+            <% end %>
           </div>
           <div class="projects__card-body">
             <div class="table-responsive">
@@ -73,7 +75,9 @@
         <div class="customers__card">
           <div class="customers__card-header">
             <h4>Latest Crimes</h4>
-            <button>See all <span class="las la-arrow-right"></span></button>
+            <%= link_to crimes_path do %>
+              <button>See all <span class="las la-arrow-right"></span></button>
+            <% end %>
           </div>
           <%= all_crimes(@crimes) %>
         </div>

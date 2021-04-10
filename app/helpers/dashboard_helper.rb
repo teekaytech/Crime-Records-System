@@ -9,7 +9,7 @@ module DashboardHelper
             content_tag(:span, '', class: "status #{fir.status}") + fir.status
           end)
           concat(content_tag(:td,
-                             link_to(update_message(fir.status), dashboard_index_path,
+                             link_to(update_message(fir.status), get_link_type(fir), method: :post,
                                      class: "btn btn-#{update_link_class(fir.status)} d-block")))
         end)
       end
@@ -18,6 +18,10 @@ module DashboardHelper
 
   def update_message(status)
     status.eql?('approved') ? 'Reject' : 'Approve'
+  end
+
+  def get_link_type(fir)
+    update_message(fir.status).eql?('Approve') ? approve_fir_path(fir) : reject_fir_path(fir)
   end
 
   def update_link_class(status)
@@ -42,7 +46,7 @@ module DashboardHelper
               end)
             end)
             concat(content_tag(:div, class: 'contact') do
-              concat(link_to('view', dashboard_index_path, class: 'btn btn-dark'))
+              concat(link_to('view', crime, class: 'btn btn-dark'))
             end)
           end)
         end)
