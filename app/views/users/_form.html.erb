@@ -1,5 +1,5 @@
 <%= form_for(user, html: {multipart: true}) do |f| %>
-  <div class="form-group">
+  <div class="form-group text-start m-3">
     <div class="row mb-3">
       <div class="col-md-6">
         <%= f.label :firstname %>
@@ -61,7 +61,7 @@
       <%= f.file_field :avatar, class: 'form-control' %>
     </div>
   </div>
-  <div class="mt-4">
-    <%= f.submit "Update profile", class: 'btn btn-success move-right' %>
+  <div class="mt-4 text-center">
+    <%= f.submit class: 'btn btn-primary move-right' %>
   </div>
 <% end %>

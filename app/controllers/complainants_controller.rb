@@ -2,7 +2,7 @@ class ComplainantsController < ApplicationController
   before_action :set_complainant, only: %i[show edit update destroy]
 
   def index
-    @complainants = Complainant.all
+    @complainants = Complainant.includes(:user).paginate(page: params[:page], per_page: 10).order('created_at DESC')
   end
 
   def show; end
@@ -14,7 +14,7 @@ class ComplainantsController < ApplicationController
   def edit; end
 
   def create
-    @complainant = Complainant.new(complainant_params)
+    @complainant = current_user.complainants.new(complainant_params)
 
     respond_to do |format|
       if @complainant.save
@@ -40,21 +40,19 @@ class ComplainantsController < ApplicationController
   end
 
   def destroy
-    @complainant.destroy
-    respond_to do |format|
-      format.html { redirect_to complainants_url, notice: 'Complainant was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @complainant.active = @complainant.active ? false : true
+    @complainant.save
+    redirect_to complainants_url, notice: "Complainant with ID: #{@complainant.id} was successfully updated."
   end
 
   private
 
   def set_complainant
-    @complainant = Complainant.find(params[:id])
+    @complainant = Complainant.includes(:user).find(params[:id])
   end
 
   def complainant_params
     params.require(:complainant).permit(:user_id, :surname, :firstname, :dob, :nationality, :address,
-                                        :occupation, :phone, :gender, :criminal)
+                                        :occupation, :phone, :gender, :email)
   end
 end

@@ -1,54 +1,64 @@
-<p id="notice"><%= notice %></p>
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Complainants' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'categories/nav', text: ['Add New Complainant', 'All Complainants'],
+               url: [new_complainant_path, complainants_path] %>
+    <div class="bg-white p-2 text-center">
+      <h5 class="my-4 border-bottom">Complainant Details (ID: <%= id_formatter(@complainant.id) %>)</h5>
 
-<p>
-  <strong>User:</strong>
-  <%= @complainant.user_id %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Reporting Officer:</strong></h5>
+        <p><%= @complainant.user.full_name %></p>
+      </div>
 
-<p>
-  <strong>Surname:</strong>
-  <%= @complainant.surname %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Full Name:</strong></h5>
+        <%= "#{@complainant.firstname} #{@complainant.surname}"  %>
+      </div>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @complainant.firstname %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Date of Birth:</strong></h5>
+        <p><%= format_time(@complainant.dob) %></p>
+      </div>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @complainant.dob %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Address:</strong></h5>
+        <p><%= @complainant.address %></p>
+      </div>
 
-<p>
-  <strong>Nationality:</strong>
-  <%= @complainant.nationality %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Nationality:</strong></h5>
+        <p><%= @complainant.nationality %></p>
+      </div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @complainant.address %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Gender:</strong></h5>
+        <p><%= @complainant.gender %></p>
+      </div>
 
-<p>
-  <strong>Occupation:</strong>
-  <%= @complainant.occupation %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Occupation:</strong></h5>
+        <p><%= @complainant.occupation %></p>
+      </div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @complainant.phone %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Phone Number:</strong></h5>
+        <p><%= @complainant.phone %></p>
+      </div>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @complainant.gender %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Email address:</strong></h5>
+        <p><%= @complainant.email %></p>
+      </div>
 
-<p>
-  <strong>Criminal:</strong>
-  <%= @complainant.criminal %>
-</p>
+      <%= link_to 'Edit', edit_complainant_path(@complainant) %> |
+      <%= link_to 'Back', complainants_path %>
 
-<%= link_to 'Edit', edit_complainant_path(@complainant) %> |
-<%= link_to 'Back', complainants_path %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>
