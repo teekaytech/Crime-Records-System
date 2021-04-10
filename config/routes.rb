@@ -24,5 +24,8 @@ Rails.application.routes.draw do
 
   resources :categories
   post 'categories/:id/activate', to: 'categories#activate', as: 'activate_category'
+
+  get 'search/index', to: 'search#index', as: 'search'
+  post 'search/index', to: 'search#index', as: 'find'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

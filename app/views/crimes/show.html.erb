@@ -5,7 +5,7 @@
     <%= render 'layouts/alerts' %>
     <%= render 'categories/nav', text: ['Add New Crime', 'All Crimes'], url: [new_crime_path, crimes_path] %>
     <div class="bg-white p-2 text-center">
-      <h5 class="my-4 border-bottom">Crime Details</h5>
+      <h5 class="my-4 border-bottom">Crime ID: <%= @crime.id %> Details</h5>
 
       <div class="mb-4">
         <h5 class="m-0 mb-1"><strong>Reporting Officer:</strong></h5>
