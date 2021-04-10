@@ -1,39 +1,58 @@
-<p id="notice"><%= notice %></p>
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Crimes' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'categories/nav', text: ['Add New Crime', 'All Crimes'], url: [new_crime_path, crimes_path] %>
+    <div class="bg-white p-2 text-center">
+      <h5 class="my-4 border-bottom">Crime Details</h5>
 
-<p>
-  <strong>User:</strong>
-  <%= @crime.user_id %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Reporting Officer:</strong></h5>
+        <p><%= @crime.user.full_name %></p>
+      </div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @crime.category_id %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Categories:</strong></h5>
+        <% if @crime.categories.count <= 0 %>
+          <em>Not registered</em>
+        <% else %>
+          <% @crime.categories.each do  |category|%>
+            <li><%= category.name %></li>
+          <% end %>
+        <% end %>
+      </div>
 
-<p>
-  <strong>Accuser:</strong>
-  <%= @crime.accuser %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Accuser:</strong></h5>
+        <p><%= @crime.accuser %></p>
+      </div>
 
-<p>
-  <strong>Accused:</strong>
-  <%= @crime.accused %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Accused:</strong></h5>
+        <p><%= @crime.accused %></p>
+      </div>
 
-<p>
-  <strong>Unknown others:</strong>
-  <%= @crime.unknown_others %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Unknown Others:</strong></h5>
+        <p><%= @crime.unknown_others %></p>
+      </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @crime.date %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>Accuser:</strong></h5>
+        <%= format_time(@crime.date) %>
+      </div>
 
-<p>
-  <strong>Statements:</strong>
-  <%= @crime.statements %>
-</p>
+      <div class="mb-4">
+        <h5 class="m-0 mb-1"><strong>statements:</strong></h5>
+        <%= @crime.statements %>
+      </div>
 
-<%= link_to 'Edit', edit_crime_path(@crime) %> |
-<%= link_to 'Back', crimes_path %>
+      <%= link_to 'Edit', edit_crime_path(@crime) %> |
+      <%= link_to 'Back', crimes_path %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

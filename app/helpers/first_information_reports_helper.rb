@@ -1,8 +1,9 @@
 module FirstInformationReportsHelper
   def detect_status(status)
-    if status.eql?('pending')
+    case status
+    when 'pending'
       'warning'
-    elsif status.eql?('approved')
+    when 'approved'
       'success'
     else
       'danger'

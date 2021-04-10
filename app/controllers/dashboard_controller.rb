@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-
   def index
     @officers = User.where(admin: false).all.count
     @complainants = Complainant.all.count
