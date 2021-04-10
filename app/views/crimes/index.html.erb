@@ -20,7 +20,7 @@
         </thead>
         <% @crimes.each do |crime| %>
           <tr>
-            <td><%= crime.id %></td>
+            <td><%= id_formatter(crime.id) %></td>
             <td><%= crime.user.full_name %></td>
             <td>
               <% if crime.categories.count <= 0 %>
