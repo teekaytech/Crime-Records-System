@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-`rails db:drop`
-`rails db:create`
-`rails db:migrate`
+# `rails db:drop`
+# `rails db:create`
+# `rails db:migrate`
 
 user1 = User.create!(
   email: 'admin@test.com',
