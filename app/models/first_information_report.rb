@@ -7,7 +7,7 @@ class FirstInformationReport < ApplicationRecord
 
   scope :all_active, -> { where(active: TRUE).all }
   scope :the_default, -> { where(status: 0).all }
-  scope :approved, -> { where(status: 1).all }
-  scope :rejected, -> { where(status: 2).all }
+  scope :the_approved, -> { where(status: 1).all }
+  scope :the_rejected, -> { where(status: 2).all }
   scope :result, ->(start_date, end_date) { where('date >= ? and date <= ?', start_date, end_date).all }
 end
