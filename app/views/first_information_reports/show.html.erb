@@ -1,0 +1,45 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'First Information Report' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav_firs' %>
+    <div class="bg-white p-2">
+      <div class="card text-center">
+        <h5 class="card-header p-3">FIR ID: <strong><%= @first_information_report.id %></strong> Details</h5>
+        <span class="badge bg-<%= detect_status(@first_information_report.status) %>">
+          <%= @first_information_report.status %>
+        </span>
+        <div class="card-body">
+          <h5 class="card-title text-uppercase my-3"><strong class="d-block">Offense:</strong> <%= @first_information_report.offense %></h5>
+          <p>
+            <strong class="d-block text-capitalize">Reporting Officer: </strong>
+            <%=
+              "#{@first_information_report.user.firstname}
+              #{@first_information_report.user.lastname}"
+            %>
+            <small>(<%= @first_information_report.user.admin ? 'Admin Officer' : 'Police Officer' %>)</small>
+          </p>
+          <p><strong  class="d-block">Suspect Details: </strong><%= @first_information_report.suspect_details %></p>
+          <p>
+            <strong  class="d-block">Complainant: </strong>
+            <%=
+              "#{@first_information_report.complainant.firstname}
+              #{@first_information_report.complainant.surname}"
+            %>
+            <small>(<%= @first_information_report.complainant.phone %>)</small>
+          </p>
+          <p>
+            <strong  class="d-block">Location: </strong>
+            <%= @first_information_report.location %>
+          </p>
+          <p><strong  class="d-block">Date: </strong><%= @first_information_report.date.strftime('%c') %></p>
+          <%= link_to 'Back', first_information_reports_path %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

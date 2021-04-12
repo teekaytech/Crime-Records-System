@@ -1,0 +1,67 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Crimes' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'categories/nav', text: ['Add New Crime', 'All Crimes'], url: [new_crime_path, crimes_path] %>
+    <div class="bg-white p-2 ">
+      <h5 class="my-4">All Crimes</h5>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Registered By:</th>
+          <th scope="col">Categories</th>
+          <th scope="col">Accuser</th>
+          <th scope="col">Acussed</th>
+          <th scope="col">Date</th>
+          <th scope="col" colspan="3" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <% @crimes.each do |crime| %>
+          <tr>
+            <td><%= id_formatter(crime.id) %></td>
+            <td><%= crime.user.full_name %></td>
+            <td>
+              <% if crime.categories.count <= 0 %>
+                <em>not registered</em>
+              <% else %>
+                <% crime.categories.each do  |category|%>
+                  <li class="border-bottom"><%= category.name %></li>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= crime.accuser %></td>
+            <td><%= crime.accused %></td>
+            <td><%= format_time(crime.date) %></td>
+            <td>
+              <%= link_to crime, class: 'badge bg-dark'  do %>
+                <span class="las la-eye"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_crime_path(crime), class: 'badge bg-warning' do %>
+                <span class="las la-user-edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <% if current_user.admin? %>
+                <%= link_to crime, method: :delete,
+                            data: { confirm: 'Delete Crime? This action cannot be reversed.' },
+                            class: 'badge bg-danger' do %>
+                  <span class="las la-trash"></span>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @crimes, renderer: BootstrapPagination::Rails %>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

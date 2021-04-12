@@ -1,0 +1,5 @@
+<% if obj.errors.full_messages.any? %>
+  <div class="alert alert-danger">
+    <%= obj.errors.full_messages.join('. ') %>
+  </div>
+<% end %>

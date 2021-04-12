@@ -1,0 +1,21 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Complainants' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'layouts/form_errors', obj: @complainant %>
+    <%= render 'categories/nav', text: ['Add New Complainant', 'All Complainants'],
+               url: [new_complainant_path, complainants_path] %>
+    <div class="bg-white py-5 px=3 text-center">
+      <h5 class="mb-3">Editing Complainant (ID: <%= id_formatter(@complainant.id) %>)</h5>
+
+      <%= render 'form', complainant: @complainant %>
+
+      <%= link_to 'Show', @complainant %> |
+      <%= link_to 'Back', complainants_path %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'User Profile' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <div class="bg-white m-2 p-4 text-center text-danger">
+      <p>Resource not found!</p>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

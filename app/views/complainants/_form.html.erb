@@ -1,0 +1,67 @@
+<%= form_with(model: complainant) do |form| %>
+  <div class="form-group text-start mx-4">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :surname %>
+        <%= form.text_field :surname, autofocus: true, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :firstname %>
+        <%= form.text_field :firstname, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :nationality %>
+        <%= form.text_field :nationality, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :occupation %>
+        <%= form.text_field :occupation, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="">
+        <%= form.label :address %>
+        <%= form.text_field :address, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <%= form.label :phone %>
+        <%= form.text_field :phone, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+
+      <div class="col-md-4">
+        <%= form.label :gender %>
+        <select name="complainant[gender]" class="form-select" required, autocomplete="on">
+          <option value="">Choose...</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <%= form.label :email %>
+        <%= form.email_field :email, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="field">
+        <%= form.label :dob, 'Date of Birth'%>
+        <%= form.date_field :dob, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="my-4 text-center">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

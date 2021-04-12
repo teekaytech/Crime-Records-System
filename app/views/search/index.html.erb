@@ -1,0 +1,43 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Search' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <div class="bg-white p-4">
+      <h5 class="my-4">Search Query:</h5>
+      <%= form_with url: find_url, method: :post, class: 'row align-items-end mt-2 mb-5' do |form| %>
+        <div class="col-md-5">
+          <%= form.label :search_id, "Unique ID:" %>
+          <%= form.number_field :search_id, class: 'form-control', required: true, autocomplete: 'number',
+                                placeholder: 'ID here...', autofocus: true %>
+        </div>
+
+        <div class="col-md-5">
+          <%= form.label :search_query, "Search for:" %>
+          <select class="form-select" name="search_query" id="search_query" required autocomplete="on">
+            <option selected>Choose</option>
+            <option value="fir">First Information Reports</option>
+            <option value="crime">Crimes</option>
+          </select>
+        </div>
+
+        <div class="col-md-2 row">
+          <%= form.submit "Search", class: 'btn btn-outline-success' %>
+        </div>
+      <% end %>
+
+      <% unless @result[:status].nil? %>
+        <% if @result[:fir] %>
+          <%= render 'fir_result', fir: @result[:fir] %>
+        <% elsif @result[:crime] %>
+          <%= render 'crime_result', crime: @result[:crime] %>
+        <% else %>
+          <p class="text-center text-danger">Not Found! Please, try again.</p>
+        <% end %>
+      <% end %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

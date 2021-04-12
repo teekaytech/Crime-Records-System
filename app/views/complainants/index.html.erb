@@ -1,0 +1,76 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Complainants' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'categories/nav', text: ['Add New Complainant', 'All Complainants'],
+               url: [new_complainant_path, complainants_path] %>
+    <div class="bg-white p-2 ">
+      <h5 class="my-4">All Complainants</h5>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Registered By:</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Address</th>
+          <th scope="col">Occupation</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Status</th>
+          <th scope="col" colspan="4" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @complainants.each do |complainant| %>
+          <tr>
+            <td><%= id_formatter(complainant.id) %></td>
+            <td><%= complainant.user.full_name %></td>
+            <td><%= complainant.surname %></td>
+            <td><%= complainant.firstname %></td>
+            <td><%= complainant.address %></td>
+            <td><%= complainant.occupation %></td>
+            <td><%= complainant.phone %></td>
+            <td>
+              <% if complainant.active? %>
+                <span class="badge bg-success">Active</span>
+              <% else %>
+                <span class="badge bg-danger">Inactive</span>
+              <% end %>
+            <td>
+              <%= link_to complainant, class: 'badge bg-dark'  do %>
+                <span class="las la-eye"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_complainant_path(complainant), class: 'badge bg-warning' do %>
+                <span class="las la-user-edit"></span>
+              <% end %>
+            <td>
+              <% if current_user.admin? %>
+                <% if complainant.active? %>
+                  <%= link_to complainant, method: :delete,
+                              data: { confirm: 'Deactivate Complainant?' },
+                              class: 'badge bg-danger' do %>
+                    <span class="">X</span>
+                  <% end %>
+                <% else %>
+                  <%= link_to complainant, method: :delete,
+                              data: { confirm: 'Activate Complainant?' },
+                              class: 'badge bg-success' do %>
+                    <span class="las la-check-square"></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @complainants, renderer: BootstrapPagination::Rails %>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

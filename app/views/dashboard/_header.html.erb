@@ -1,0 +1,20 @@
+<header>
+  <h3>
+    <label for="nav-toggle">
+      <span class="las la-bars hamburger"></span>
+      <% if defined?(title) && title %>
+        <%= title %>
+      <% else %>
+        CRMS
+      <% end %>
+    </label>
+  </h3>
+  <div class="user-wrapper">
+    <img src="<%= current_user.avatar.thumbnail %>" alt="user-icon" srcset="">
+    <div class="">
+      <h5><%= current_user.firstname %></h5>
+      <small><%= current_user.admin ? 'Admin' : 'Police' %></small>
+      <small class="text-sm-end"><%= link_to 'Logout', logout_path, method: :delete  %></small>
+    </div>
+  </div>
+</header>

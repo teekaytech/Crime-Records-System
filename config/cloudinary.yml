@@ -1,0 +1,13 @@
+development:
+  cloud_name: teekaytech
+  api_key: '866728515811796'
+  api_secret: W511CxRH-pC8F5ipRnbaWyDkNig
+  enhance_image_tag: true
+  static_file_support: false
+
+production:
+  cloud_name: teekaytech
+  api_key: '866728515811796'
+  api_secret: W511CxRH-pC8F5ipRnbaWyDkNig
+  enhance_image_tag: true
+  static_file_support: true

@@ -1,0 +1,20 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'First Information Reports' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav_firs' %>
+    <%= render 'layouts/form_errors', obj: @first_information_report %>
+    <div class="bg-white p-2 text-center">
+      <h5 class="my-4">New First Information Report</h5>
+
+      <%= render 'form', first_information_report: @first_information_report, users: @users, complainants: @complainants %>
+
+      <%= link_to 'Show', @first_information_report %> |
+      <%= link_to 'Back', first_information_reports_path %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

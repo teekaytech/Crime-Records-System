@@ -1,0 +1,17 @@
+<%= render partial: './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Crime Categories' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav', text: ['Add Category', 'All Categories'], url: [new_category_path, categories_path] %>
+    <div class="bg-white p-2 text-center">
+      <h5 class="my-4 text-start">Editing Category</h5>
+      <%= render 'form', category: @category %>
+
+      <%= link_to 'Back', categories_path %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

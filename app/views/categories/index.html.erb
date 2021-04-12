@@ -1,0 +1,62 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Crime Categories' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav', text: ['Add Category', 'All Categories'], url: [new_category_path, categories_path] %>
+    <div class="bg-white p-2 ">
+      <h5 class="my-4">Categories</h5>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Registered By:</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= id_formatter(category.id) %></td>
+            <td><%= category.name %></td>
+            <td><%= "#{category.user.full_name} (#{category.user.account_type})" %></td>
+            <td>
+              <% if category.active %>
+                <span class='badge bg-success'>Active</span>
+              <% else %>
+                <span class='badge bg-danger'>Inactive</span>
+              <% end %>
+            </td>
+            <td>
+              <% if current_user %>
+                <% if current_user.admin? %>
+                  <%= link_to edit_category_path(category), class: 'badge bg-warning' do %>
+                    <span class="las la-edit"></span>
+                  <% end %>
+                  <% if category.active %>
+                    <%= link_to category, method: :delete, data: { confirm: 'Disable Category?' }, class: 'badge bg-danger'  do %>
+                      <span class="">Deactivate</span>
+                    <% end %>
+                  <% else %>
+                    <%= link_to category, method: :delete, data: { confirm: 'Update Category?' }, class: 'badge bg-success'  do %>
+                      <span class="">Reactivate</span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <%= link_to category, class: 'badge bg-dark' do %>
+                <span class="las la-eye"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'New User' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav_users', user: @user %>
+    <div class="bg-white p-2 text-center">
+      <h5>User registration page</h5>
+      <%= render 'form', user: @user %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

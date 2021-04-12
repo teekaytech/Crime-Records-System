@@ -1,0 +1,47 @@
+<%= form_with(model: crime) do |form| %>
+  <div class="form-group text-start">
+    <div class="row mb-3">
+      <div class="">
+        <%= form.label :categories, 'Categories (Click and hold the `Ctrl` button to select more than one)' %>
+        <%= select_tag :categories,
+                       options_from_collection_for_select(@categories, :id, :name), multiple: true,
+                       class: 'form-control', autofocus: true, required: true %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :accuser %>
+        <%= form.text_field :accuser, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+
+        <div class="col-md-6">
+        <%= form.label :accused %>
+        <%= form.text_field :accused, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :unknown_others %>
+        <%= form.text_area :unknown_others, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :statements %>
+        <%= form.text_area :statements, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="">
+        <%= form.label :date, class: 'd-block' %>
+        <%= form.datetime_local_field :date, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="text-center my-4">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

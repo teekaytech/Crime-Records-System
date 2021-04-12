@@ -1,0 +1,31 @@
+<div class="card text-center">
+  <h5 class="card-header p-3">FIR ID: <strong><%= fir.id %></strong> Details</h5>
+  <span class="badge bg-<%= detect_status(fir.status) %>">
+          <%= fir.status %>
+        </span>
+  <div class="card-body">
+    <h5 class="card-title text-uppercase my-3"><strong class="d-block">Offense:</strong> <%= fir.offense %></h5>
+    <p>
+      <strong class="d-block text-capitalize">Reporting Officer: </strong>
+      <%=
+        "#{fir.user.firstname}
+        #{fir.user.lastname}"
+      %>
+      <small>(<%= fir.user.admin ? 'Admin Officer' : 'Police Officer' %>)</small>
+    </p>
+    <p><strong  class="d-block">Suspect Details: </strong><%= fir.suspect_details %></p>
+    <p>
+      <strong  class="d-block">Complainant: </strong>
+      <%=
+        "#{fir.complainant.firstname}
+        #{fir.complainant.surname}"
+      %>
+      <small>(<%= fir.complainant.phone %>)</small>
+    </p>
+    <p>
+      <strong  class="d-block">Location: </strong>
+      <%= fir.location %>
+    </p>
+    <p><strong  class="d-block">Date: </strong><%= fir.date.strftime('%c') %></p>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Reports' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <div class="bg-white p-4">
+      <h5 class="my-4">Generating Reports: <small><i>(default start and end time is 00:00:00)</i></small></h5>
+      <%= form_with url: post_report_form_url, method: :post, class: 'row align-items-end mt-2 mb-5' do |form| %>
+        <div class="col-md-3">
+          <%= form.label :start, "Start Date:" %>
+          <%= form.date_field :start, class: 'form-control', required: true, autocomplete: 'date' %>
+        </div>
+
+        <div class="col-md-3">
+          <%= form.label :end, "End Date:" %>
+          <%= form.date_field :end, class: 'form-control', required: true, autocomplete: 'date' %>
+        </div>
+
+        <div class="col-md-3">
+          <%= form.label :entity, "Search for:" %>
+          <select class="form-select" name="query" id="query" required autocomplete="on">
+            <option selected value="">Choose</option>
+            <option value="fir">First Information Reports</option>
+            <option value="crime">Crimes</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 row">
+          <%= form.submit "Search", class: 'btn btn-outline-success' %>
+        </div>
+      <% end %>
+
+      <% if defined? @result %>
+        <% if @result && @result.any? %>
+          <%= render 'report', result: @result %>
+        <% else %>
+          <p class="text-center text-danger">No record for the selected time range. Please, try again.</p>
+        <% end %>
+      <% end %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>
