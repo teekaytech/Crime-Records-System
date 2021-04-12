@@ -45,10 +45,12 @@
               <% end %>
             </td>
             <td>
-              <%= link_to crime, method: :delete,
-                          data: { confirm: 'Delete Crime? This action cannot be reversed.' },
-                          class: 'badge bg-danger' do %>
-                <span class="las la-trash"></span>
+              <% if current_user.admin? %>
+                <%= link_to crime, method: :delete,
+                            data: { confirm: 'Delete Crime? This action cannot be reversed.' },
+                            class: 'badge bg-danger' do %>
+                  <span class="las la-trash"></span>
+                <% end %>
               <% end %>
             </td>
           </tr>

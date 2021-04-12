@@ -47,20 +47,22 @@
                 <span class="las la-user-edit"></span>
               <% end %>
             <td>
-              <% if complainant.active? %>
-                <%= link_to complainant, method: :delete,
-                            data: { confirm: 'Deactivate Complainant?' },
-                            class: 'badge bg-danger' do %>
-                  <span class="">X</span>
-                <% end %>
-              <% else %>
-                <%= link_to complainant, method: :delete,
-                            data: { confirm: 'Activate Complainant?' },
-                            class: 'badge bg-success' do %>
-                  <span class="las la-check-square"></span>
+              <% if current_user.admin? %>
+                <% if complainant.active? %>
+                  <%= link_to complainant, method: :delete,
+                              data: { confirm: 'Deactivate Complainant?' },
+                              class: 'badge bg-danger' do %>
+                    <span class="">X</span>
+                  <% end %>
+                <% else %>
+                  <%= link_to complainant, method: :delete,
+                              data: { confirm: 'Activate Complainant?' },
+                              class: 'badge bg-success' do %>
+                    <span class="las la-check-square"></span>
+                  <% end %>
                 <% end %>
               <% end %>
-
+            </td>
           </tr>
         <% end %>
         </tbody>

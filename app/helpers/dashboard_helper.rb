@@ -8,9 +8,14 @@ module DashboardHelper
           concat(content_tag(:td, class: 'status-col') do
             content_tag(:span, '', class: "status #{fir.status}") + fir.status
           end)
-          concat(content_tag(:td,
-                             link_to(update_message(fir.status), get_link_type(fir), method: :post,
-                                     class: "btn btn-#{update_link_class(fir.status)} d-block")))
+          if current_user.admin?
+            concat(content_tag(:td,
+                               link_to(update_message(fir.status), get_link_type(fir), method: :post,
+                                       class: "btn btn-#{update_link_class(fir.status)} d-block")))
+          else
+            concat(content_tag(:td, 'N/A', class: 'd-block'))
+          end
+
         end)
       end
     end

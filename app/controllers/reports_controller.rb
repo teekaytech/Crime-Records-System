@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
-  def index
+  before_action :authenticate_user
 
+  def index
     return unless request.post?
 
     start_date = params[:start]
