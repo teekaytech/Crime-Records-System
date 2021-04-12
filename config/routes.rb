@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root to: 'sessions#index'
 
-
   resources :complainants
   resources :crimes
   resources :dashboard, only: [:index]
@@ -27,5 +26,7 @@ Rails.application.routes.draw do
 
   get 'search/index', to: 'search#index', as: 'search'
   post 'search/index', to: 'search#index', as: 'find'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get 'reports/index', to: 'reports#index', as: 'get_report_form'
+  post 'reports/index', to: 'reports#index', as: 'post_report_form'
 end

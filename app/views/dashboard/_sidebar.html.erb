@@ -57,7 +57,11 @@
         <% end %>
       </li>
       <li class="menu-list">
-        <a href="#"><span class="las la-clipboard-list"></span><span class="bar-text">Reports</span></a>
+        <%= link_to get_report_form_path, class: '' do %>
+          <span class="las la-clipboard-list"></span>
+          <span class="bar-text">Generate Reports</span>
+        <% end %>
+        <a href="#"></a>
       </li>
       <li class="menu-list">
         <%= link_to logout_path, method: :delete do %>
