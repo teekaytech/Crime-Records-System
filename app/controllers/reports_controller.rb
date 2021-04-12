@@ -24,27 +24,35 @@ class ReportsController < ApplicationController
   def get_data(entity, start_date, end_date)
     case entity
     when 'fir'
-      firs = FirstInformationReport.includes(%i[user complainant]).result(start_date, end_date)
-      {
-        start: start_date,
-        end: end_date,
-        firs: firs.any? ? firs.all : false,
-        appr: firs.approved.size,
-        pndg: firs.the_default.size,
-        rjtd: firs.rejected.size
-      }
+      fir_records(start_date, end_date)
     when 'crime'
-      crimes = Crime.includes(%i[user categories]).result(start_date, end_date)
-      active = crimes.all_active.size
-      {
-        start: start_date,
-        end: end_date,
-        crimes: crimes.any? ? crimes.all : false,
-        active: active,
-        inactive: crimes.size - active
-      }
+      crime_records(start_date, end_date)
     else
       false
     end
+  end
+
+  def fir_records(st_d, en_d)
+    firs = FirstInformationReport.includes(%i[user complainant]).result(st_d, en_d)
+    {
+      start: st_d,
+      end: en_d,
+      firs: firs.any? ? firs.all : false,
+      appr: firs.approved.size,
+      pndg: firs.the_default.size,
+      rjtd: firs.rejected.size
+    }
+  end
+
+  def crime_records(st_d, en_d)
+    crimes = Crime.includes(%i[user categories]).result(st_d, en_d)
+    active = crimes.all_active.size
+    {
+      start: st_d,
+      end: en_d,
+      crimes: crimes.any? ? crimes.all : false,
+      active: active,
+      inactive: crimes.size - active
+    }
   end
 end

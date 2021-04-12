@@ -90,28 +90,6 @@
       cursor: pointer;
     }
 
-    .search-wrapper {
-      border: 1px solid #ccc;
-      border-radius: 30px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      overflow-x: hidden;
-
-      span {
-        display: inline-block;
-        padding: 0 1rem;
-        font-size: 1.5rem;
-      }
-
-      input {
-        height: 100%;
-        padding: 0.5rem;
-        border: none;
-        outline: none;
-      }
-    }
-
     .user-wrapper {
       display: flex;
       align-items: center;
