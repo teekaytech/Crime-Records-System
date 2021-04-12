@@ -1,0 +1,14 @@
+<%= form_with(model: category) do |form| %>
+  <div class="form-group text-start">
+    <div class="row mb-3">
+      <div>
+        <%= form.label :name %>
+        <%= form.text_field :name, autofocus: true, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

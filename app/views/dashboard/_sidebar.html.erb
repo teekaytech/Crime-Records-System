@@ -1,0 +1,73 @@
+<input type="checkbox" id="nav-toggle">
+<div class="sidebar">
+  <div class="sidebar__brand">
+    <h2><span class="lab la-accusoft"></span><span class="bar-text">CRMS</span></h2>
+  </div>
+
+  <div class="sidebar__menu">
+    <ul>
+      <li class="menu-list">
+        <%= link_to dashboard_index_path, class: 'active' do %>
+          <span class="las la-igloo"></span>
+          <span class="bar-text">Dashboard</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to user_path(current_user), class: '' do %>
+          <span class="las la-user-circle"></span>
+          </span><span class="bar-text">Profile</span>
+        <% end %>
+      </li>
+      <% if current_user.admin %>
+        <li class="menu-list">
+          <%= link_to users_path, class: '' do %>
+            <span class="las la-users"></span>
+            <span class="bar-text">Users Management</span>
+          <% end %>
+        </li>
+        <% end %>
+      <li class="menu-list">
+        <%= link_to first_information_reports_path, class: '' do %>
+          <span class="las la-clipboard-list"></span>
+          <span class="bar-text">First Information Reports</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to categories_path, class: '' do %>
+          <span class="las la-columns"></span>
+          <span class="bar-text">Crime Categories</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to crimes_path, class: '' do %>
+          <span class="las la-assistive-listening-systems"></span>
+          <span class="bar-text">Crimes</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to complainants_path, class: '' do %>
+          <span class="las la-user-friends"></span>
+          <span class="bar-text">Complainants</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to search_path, class: '' do %>
+          <span class="las la-search"></span>
+          <span class="bar-text">Search</span>
+        <% end %>
+      </li>
+      <li class="menu-list">
+        <%= link_to get_report_form_path, class: '' do %>
+          <span class="las la-clipboard-list"></span>
+          <span class="bar-text">Generate Reports</span>
+        <% end %>
+        <a href="#"></a>
+      </li>
+      <li class="menu-list">
+        <%= link_to logout_path, method: :delete do %>
+          <span class="las la-long-arrow-alt-left"></span><span class="bar-text">Logout</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
