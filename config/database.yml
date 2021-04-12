@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: crms_production
-  username: crms
+  username:
   password: <%= ENV['CRMS_DATABASE_PASSWORD'] %>
