@@ -14,7 +14,7 @@
 - RubyMine
 - Cloudinary (Image storage)
 
-### Demo URL: coming-soon
+### Demo URL: https://crime-monitoring.herokuapp.com/
 
 ## Getting Started
 ### Setup
