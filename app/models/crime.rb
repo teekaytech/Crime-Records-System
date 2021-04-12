@@ -27,5 +27,4 @@ class Crime < ApplicationRecord
   def delete_categories
     CrimeCategory.where(crime_id: id).destroy_all
   end
-
 end
