@@ -6,4 +6,5 @@ class FirstInformationReport < ApplicationRecord
   enum status: %i[pending approved rejected]
 
   scope :all_active, -> { where(active: TRUE).all }
+  scope :result, ->(start_date, end_date) { where('date >= ? and date <= ?', start_date, end_date).all }
 end

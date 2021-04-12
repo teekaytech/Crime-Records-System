@@ -34,9 +34,9 @@
     </div>
 
     <div class="row mb-3">
-      <div class="col-md-6">
+      <div class="">
         <%= form.label :date, class: 'd-block' %>
-        <%= form.datetime_select :date, required: true, autocomplete: "text", class: "form-control" %>
+        <%= form.datetime_local_field :date, required: true, autocomplete: "text", class: "form-control" %>
       </div>
     </div>
 

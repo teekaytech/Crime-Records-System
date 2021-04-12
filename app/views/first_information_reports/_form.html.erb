@@ -25,8 +25,8 @@
 
     <div class="row mb-3">
       <div class="col-md-6">
-        <%= form.label :date, class: 'd-block mb-2' %>
-        <%= form.datetime_select :date, required: true %>
+        <%= form.label :date, class: '' %>
+        <%= form.datetime_local_field :date, required: true, class: 'form-control' %>
       </div>
 
       <div class="col-md-6">

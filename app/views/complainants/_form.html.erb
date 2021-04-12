@@ -55,8 +55,8 @@
 
     <div class="row mb-3">
       <div class="field">
-        <%= form.label :dob %>
-        <%= form.datetime_select :dob, required: true, autocomplete: "text", class: "form-control" %>
+        <%= form.label :dob, 'Date of Birth'%>
+        <%= form.date_field :dob, required: true, autocomplete: "text", class: "form-control" %>
       </div>
     </div>
 

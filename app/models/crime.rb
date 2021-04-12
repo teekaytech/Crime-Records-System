@@ -4,6 +4,8 @@ class Crime < ApplicationRecord
   has_many :categories, through: :crime_categories
   validates :accused, :accuser, :unknown_others, :date, :statements, presence: true, length: { minimum: 3 }
 
+  scope :result, ->(start_date, end_date) { where('date >= ? and date <= ?', start_date, end_date).all }
+
   def update_with_categories(categories, params)
     delete_categories
     create_new_categories(categories)
