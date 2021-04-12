@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
+  def authenticate_admin
+    p "----------------------#{current_user.admin?}------------------------------"
+    return if current_user.admin?
+
+    flash[:notice] = 'Only admins are allowed!'
+    redirect_back(fallback_location: dashboard_index_path)
+  end
+
   def logged_in?
     !!session[:user_id]
   end

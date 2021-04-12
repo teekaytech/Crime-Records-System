@@ -29,4 +29,6 @@ Rails.application.routes.draw do
 
   get 'reports/index', to: 'reports#index', as: 'get_report_form'
   post 'reports/index', to: 'reports#index', as: 'post_report_form'
+
+  get '*path' => redirect('/')
 end

@@ -1,5 +1,6 @@
 class FirstInformationReportsController < ApplicationController
   before_action :authenticate_user
+  before_action :authenticate_admin, only: %i[destroy approve reject]
   before_action :set_first_information_report, only: %i[show edit update destroy approve reject]
 
   def index
@@ -10,7 +11,9 @@ class FirstInformationReportsController < ApplicationController
       .order('created_at DESC')
   end
 
-  def show; end
+  def show
+    render :'dashboard/not_found' if @first_information_report.nil?
+  end
 
   def new
     @first_information_report = FirstInformationReport.new
@@ -19,6 +22,8 @@ class FirstInformationReportsController < ApplicationController
   end
 
   def edit
+    render :'dashboard/not_found' if @first_information_report.nil?
+
     @users = User.all_active
     @complainants = Complainant.all_active
   end
@@ -41,7 +46,6 @@ class FirstInformationReportsController < ApplicationController
 
   def update
     respond_to do |format|
-      p first_information_report_params
       if @first_information_report.update(first_information_report_params)
         format.html do
           redirect_to @first_information_report, notice: 'First information report was successfully updated.'
@@ -90,9 +94,8 @@ class FirstInformationReportsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_first_information_report
-    @first_information_report = FirstInformationReport.find(params[:id])
+    @first_information_report = FirstInformationReport.find_by(id: params[:id])
   end
 
   def first_information_report_params

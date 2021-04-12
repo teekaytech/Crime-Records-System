@@ -1,17 +1,23 @@
 class ComplainantsController < ApplicationController
+  before_action :authenticate_user
+  before_action :authenticate_admin, only: [:destroy]
   before_action :set_complainant, only: %i[show edit update destroy]
 
   def index
     @complainants = Complainant.includes(:user).paginate(page: params[:page], per_page: 10).order('created_at DESC')
   end
 
-  def show; end
+  def show
+    render :'dashboard/not_found' if @complainant.nil?
+  end
 
   def new
     @complainant = Complainant.new
   end
 
-  def edit; end
+  def edit
+    render :'dashboard/not_found' if @complainant.nil?
+  end
 
   def create
     @complainant = current_user.complainants.new(complainant_params)
@@ -48,7 +54,7 @@ class ComplainantsController < ApplicationController
   private
 
   def set_complainant
-    @complainant = Complainant.includes(:user).find(params[:id])
+    @complainant = Complainant.includes(:user).find_by(id: params[:id])
   end
 
   def complainant_params

@@ -1,17 +1,22 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user
+  before_action :authenticate_admin, only: %i[edit update destroy]
   before_action :set_category, only: %i[show edit update destroy]
   def index
     @categories = Category.all
   end
 
-  def show; end
+  def show
+    render :'dashboard/not_found' if @category.nil?
+  end
 
   def new
     @category = Category.new
   end
 
-  def edit; end
+  def edit
+    render :'dashboard/not_found' if @category.nil?
+  end
 
   def create
     @category = Category.new(category_params)
@@ -51,7 +56,7 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.includes(:user).find(params[:id])
+    @category = Category.includes(:user).find_by(id: params[:id])
   end
 
   def category_params

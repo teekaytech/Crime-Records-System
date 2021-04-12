@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: %i[show index edit update destroy]
+  before_action :authenticate_admin, except: %i[edit show update]
   before_action :now_user, only: %i[edit show toggle_role toggle_status]
 
   def index
@@ -10,7 +11,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit; end
+  def edit
+    return if now_user.eql?(current_user) || current_user.admin?
+
+    render :'dashboard/not_found' if @user.nil?
+  end
 
   def update
     @user = User.find(params[:id])
@@ -31,11 +36,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    render :'dashboard/not_found' if @user.nil?
+    return if now_user.eql?(current_user) || current_user.admin?
 
-  def destroy
-    puts 'Hello world'
+    flash[:notice] = 'You are not an admin!'
+    redirect_back(fallback_location: users_path)
   end
+
+  def destroy; end
 
   def toggle_role
     @user.admin = @user.admin.eql?(true) ? false : true
@@ -62,6 +71,6 @@ class UsersController < ApplicationController
   end
 
   def now_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 end

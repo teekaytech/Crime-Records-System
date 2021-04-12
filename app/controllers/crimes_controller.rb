@@ -1,4 +1,6 @@
 class CrimesController < ApplicationController
+  before_action :authenticate_user
+  before_action :authenticate_admin, only: [:destroy]
   before_action :set_crime, only: %i[show edit update destroy]
   before_action :set_categories, only: %i[new edit]
 
@@ -9,13 +11,17 @@ class CrimesController < ApplicationController
       .order('created_at DESC')
   end
 
-  def show; end
+  def show
+    render :'dashboard/not_found' if @crime.nil?
+  end
 
   def new
     @crime = Crime.new
   end
 
-  def edit; end
+  def edit
+    render :'dashboard/not_found' if @category.nil?
+  end
 
   def create
     @crime = current_user.crimes.build(crime_params)
@@ -48,7 +54,7 @@ class CrimesController < ApplicationController
   private
 
   def set_crime
-    @crime = Crime.includes(%i[user categories]).find(params[:id])
+    @crime = Crime.includes(%i[user categories]).find_by(id: params[:id])
   end
 
   def set_categories

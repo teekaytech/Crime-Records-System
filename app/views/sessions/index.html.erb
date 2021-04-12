@@ -6,12 +6,12 @@
 
   <main class="text-center">
     <div><%= image_tag asset_path('npf.png'), class: 'img-fluid' %></div>
-    <h5 class="fst-italic">...an automated crime record information system</h5>
+    <h5 class="fst-italic">...an automated crime records monitoring system</h5>
     <div class="getting-started py-3 mt-4">
       <% if current_user %>
         <%= link_to 'Sign Out', '#', method: :delete, class: 'btn btn-success' %>
       <% else %>
-        <h5><%= link_to 'Get Started', login_path, class: 'btn btn-success d-inline-block mx-2' %></h5>
+        <h5><%= link_to 'Get Started', login_path, class: 'btn btn-outline-light d-inline-block mx-2' %></h5>
       <% end %>
     </div>
   </main>
