@@ -38,9 +38,9 @@ class ReportsController < ApplicationController
       start: st_d,
       end: en_d,
       firs: firs.any? ? firs.all : false,
-      appr: firs.approved.size,
+      appr: firs.the_approved.size,
       pndg: firs.the_default.size,
-      rjtd: firs.rejected.size
+      rjtd: firs.the_rejected.size
     }
   end
 
