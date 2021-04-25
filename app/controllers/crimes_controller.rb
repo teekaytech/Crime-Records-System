@@ -20,7 +20,7 @@ class CrimesController < ApplicationController
   end
 
   def edit
-    render :'dashboard/not_found' if @category.nil?
+    render :'dashboard/not_found' if @crime.nil?
   end
 
   def create
