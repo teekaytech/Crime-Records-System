@@ -1,4 +1,4 @@
-## Crime Monitoring System
+## Crime Record System
 
 > An all-in-one crime monitoring system, using a police station as a case study.
 > It can be used by 2 categories of users: admin & police officer.
@@ -9,10 +9,13 @@
   Ruby 2.7.1
 - PostgreSQL
   HTML/CSS/Bootstrap 5
-- Heroku 
+- Heroku
 - Git/GitHub GitFlow
 - RubyMine
 - Cloudinary (Image storage)
+
+
+![Dashboard](shot.png)
 
 ### Demo URL: https://crime-monitoring.herokuapp.com/
 
@@ -61,7 +64,7 @@ Open `http://localhost:3000` on your browser.
 
 Contributions, issues and feature requests are welcome!
 
-1. Fork the Project: https://github.com/teekaytech/API-Task.git
+1. Fork the Project: https://github.com/teekaytech/crms.git
 2. Make your changes
 2. Open a Pull Request
 
