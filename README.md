@@ -15,7 +15,7 @@
 - Cloudinary (Image storage)
 
 
-![Dashboard](shot.png)
+![Dashboard](shot2.png)
 
 ### Demo URL: https://crime-monitoring.herokuapp.com/
 
