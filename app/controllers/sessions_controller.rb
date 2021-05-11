@@ -6,7 +6,12 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
 
-    return redirect_to login_path, notice: 'Your account has been deactivated. Contact the Admin' unless @user.active
+    if @user.nil?
+      return redirect_to login_path,
+                         notice: 'Account not found. Please login with one of the credentials below'
+    end
+
+    return redirect_to login_path, notice: 'Account deactivated. Contact the Admin' unless @user.active
 
     if !@user.nil? && @user.authenticate(params[:password])
       helpers.log_in(@user)
