@@ -5,13 +5,13 @@
 > It consists of users management, First Information Reports management, Crimes management, search and reporting features, etc.
 
 ## Built With:
+
 - Ruby on Rails 6.1
-  Ruby 2.7.1
-- PostgreSQL
-  HTML/CSS/Bootstrap 5
+- Ruby 3.0.5
+- PostgreSQL v10
+- HTML/CSS/Bootstrap 5
 - Heroku
 - Git/GitHub GitFlow
-- RubyMine
 - Cloudinary (Image storage)
 
 
@@ -20,8 +20,11 @@
 ### Demo URL: https://crime-monitoring.herokuapp.com/
 
 ## Getting Started
+
 ### Setup
+
 To setup this project on your development environment, follow the steps below:
+
 - On the project GitHub page, navigate to the main page of the repository ([this page](https://github.com/teekaytech/crms)).
 - Under the repository name, locate and click on a green button named `Code`.
 - Copy the project URL as displayed (`https://github.com/teekaytech/crms.git`).
@@ -31,8 +34,11 @@ To setup this project on your development environment, follow the steps below:
   `$ git https://github.com/teekaytech/crms.git`
 - Press the `Enter` button. Your local copy will be created.
 
-Note: you must have `Ruby 2.7.1`, `Bundler`, `Rails 6` & `Postgres >= 9.5` installed on your PC to setup the app locally.
+Note: you must have `Ruby 3.0.5`, `Bundler`, `Rails 6` & `Postgres >= 9.5` installed on your PC to setup the app locally.
+
 ### Starting the app
+
+To start the app locally, follow the steps below:
 Install gems with:
 
 ```bundle install```
@@ -42,6 +48,7 @@ Setup database with:
 ```rails db:create && rails db:migrate && rails db:seed```
 
 ### Setting up Cloudinary
+
 To setup Cloudinary, you need to generate the  access keys and other resources for file upload storage.
 Kindly follow the instructions [here](https://hackernoon.com/creating-image-uploader-in-rails-6-using-cloudinary-and-carrierwave-jp173u1w)
 
@@ -54,7 +61,9 @@ To start the local development server, run:
 Open `http://localhost:3000` on your browser.
 
 ## Author
+
 **Taofeek Abiodun Olalere**
+
 - [Portfolio](https://taofeekolalere.me)
 - [Github](https://github.com/teekaytech/)
 - [Twitter](https://twitter.com/ola_lere)
