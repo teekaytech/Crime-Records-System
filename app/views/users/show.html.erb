@@ -1,0 +1,65 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'User Profile' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav', user: @user %>
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img src="<%= @user.avatar.profile %>" alt="user-image" class="img-thumbnail"/>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Profile Details</h2>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Lastname:</span>
+                  <span class="badge bg-primary d-inline-block pt-2"><%= @user.lastname.upcase %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Firstname:</span>
+                  <span class="badge bg-secondary d-inline-block pt-2"><%= @user.firstname.titlecase %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Email:</span>
+                  <span class="badge bg-info d-inline-block pt-2"><%= @user.email %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Gender:</span>
+                  <span class="badge bg-success d-inline-block pt-2"><%= @user.gender %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Address:</span>
+                  <span class="badge bg-dark d-inline-block pt-2"><%= @user.address %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Phone Number:</span>
+                  <span class="badge bg-primary d-inline-block pt-2"><%= @user.phone %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Account created at:</span>
+                  <span class="badge bg-warning d-inline-block pt-2"><%= @user.created_at.to_formatted_s %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Last profile update:</span>
+                  <span class="badge bg-info d-inline-block pt-2"><%= time_ago_in_words(@user.updated_at) %></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>User Type:</span>
+                  <span class="badge bg-success d-inline-block pt-2"><%= @user.admin ? 'Admin Officer' : 'Police Officer' %></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

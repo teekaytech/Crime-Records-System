@@ -1,0 +1,47 @@
+<%= form_with(model: first_information_report) do |form| %>
+  <div class="form-group text-start p-3">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :user_id, 'Reporting Officer' %>
+        <%= select_tag 'first_information_report[user_id]',
+                       options_from_collection_for_select(users, :id,
+                                                          ->(ob) {"#{ob.firstname} #{ob.lastname} (#{ob.id})"}),
+                       prompt: "Choose", class: 'form-control', autofocus: true %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :complainant_id %>
+        <%= select_tag 'first_information_report[complainant_id]',
+                       options_from_collection_for_select(complainants, :id,
+                                                          ->(ob) {"#{ob.firstname} #{ob.surname} (#{ob.id})"}),
+                       prompt: "Choose", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row mb-3 mx-1">
+      <%= form.label :offense %>
+      <%= form.text_area :offense, required: true, autocomplete: "text", class: "form-control" %>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :date, class: '' %>
+        <%= form.datetime_local_field :date, required: true, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :location %>
+        <%= form.text_field :location, required: true, autocomplete: "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mb-3 mx-1">
+      <%= form.label :suspect_details %>
+      <%= form.text_area :suspect_details, required: true, autocomplete: "text", class: "form-control" %>
+    </div>
+
+    <div class="text-center my-4">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

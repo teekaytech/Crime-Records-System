@@ -1,0 +1,106 @@
+<div class="my-4">
+  <% if  result[:crimes] %>
+    <section>
+      <h4 class="text-center border-bottom">
+        <%= "Crime Records from #{result[:start].to_date} to #{result[:end].to_date}" %>
+      </h4>
+      <div class="m-4 d-flex justify-content-between">
+        <strong>Total Records: <%= result[:crimes].size %></strong>
+        <strong>Active Crimes: <%= result[:active] %></strong>
+        <strong>Inactive Crimes: <%= result[:inactive] %></strong>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Logged By:</th>
+          <th scope="col">Categories</th>
+          <th scope="col">Accuser</th>
+          <th scope="col">Acussed</th>
+          <th scope="col">Date Logged</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% result[:crimes].each do |crime| %>
+          <tr>
+            <td><%= id_formatter(crime.id) %></td>
+            <td><%= crime.user.full_name %></td>
+            <td>
+              <% if crime.categories.count <= 0 %>
+                <em>not registered</em>
+              <% else %>
+                <% crime.categories.each do  |category|%>
+                  <li class="border-bottom"><%= category.name %></li>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= crime.accuser %></td>
+            <td><%= crime.accused %></td>
+            <td><%= format_time(crime.date) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+  <% elsif result[:firs] %>
+    <section>
+      <h4 class="text-center border-bottom">
+        <%= "First Information Reports Records from
+          #{result[:start].to_date} to #{result[:end].to_date}" %>
+      </h4>
+
+      <div class="m-4 row border-bottom">
+        <div class="col-md-3">
+          <strong>Total Records: <%= result[:firs].size %></strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Approved FIRs: <%= result[:appr] %></strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Rejected FIRs: <%= result[:pndg] %></strong>
+        </div>
+        <div class="col-md-3">
+          <strong>Pending FIRs: <%= result[:rjtd] %></strong>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Logged by</th>
+          <th scope="col">Complainant</th>
+          <th scope="col">Offense</th>
+          <th scope="col">Log date</th>
+          <th scope="col">Event date</th>
+          <th scope="col">Suspect details</th>
+          <th scope="col">Location</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% result[:firs].each do |fir| %>
+          <tr>
+            <td><%= id_formatter(fir.id) %></td>
+            <td><%= "#{fir.user.firstname.titlecase } #{fir.user.lastname.titlecase }" %></td>
+            <td>
+              <%= link_to complainant_path(fir.complainant) do %>
+                <%= "#{fir.complainant.firstname.titlecase} #{fir.complainant.surname.titlecase }" %>
+                <p>(<%= fir.complainant.phone %>)</p>
+              <% end %>
+            </td>
+            <td><%= fir.offense %></td>
+            <td><%= fir.created_at.strftime('%D') %></td>
+            <td><%= fir.date.to_s %></td>
+            <td><%= fir.suspect_details %></td>
+            <td><%= fir.location %></td>
+            <td><%= fir.status %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+  <% else %>
+    <p class="text-center text-warning">No record found for the selected date range.</p>
+  <% end %>
+</div>

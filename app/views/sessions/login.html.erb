@@ -1,0 +1,34 @@
+<div class="main">
+  <div>
+    <%= render './layouts/guest/header' %>
+    <%= render 'layouts/alerts' %>
+  </div>
+
+  <main class="text-center">
+    <h2>User Login</h2>
+      <%= form_tag '/login' do %>
+        <div class="row mb-3">
+          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <%= email_field_tag :email, '', class: 'form-control', placeholder: 'Email here...', id: 'inputEmail' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <%= password_field_tag :password, '', class: 'form-control', placeholder: 'Password here...', id: 'inputPassword' %>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success mb-3">Login</button>
+        <div class="border border-light my-3 p-2">
+          <h6>Login Test Credentials:</h6>
+          <small class="d-block">Admin: "admin@test.com" | "password"</small>
+          <small>Police: "police@test.com" | "password"</small>
+        </div>
+        <%= link_to 'Homepage', root_path, class: 'btn btn-outline-light' %>
+    <% end %>
+  </main>
+  <%= render './layouts/footer' %>
+</div>
