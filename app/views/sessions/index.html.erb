@@ -1,0 +1,22 @@
+<div class="main p-5 text-center">
+  <div class="item item1">
+    <%= render './layouts/guest/header' %>
+    <%= render 'layouts/alerts' %>
+  </div>
+
+  <main class="mt-5 text-center">
+    <div class="">
+      <%= image_tag asset_path('npf.png'), class: 'img-fluid' %>
+      <h5 class="fst-italic">...an automated crime records monitoring system</h5>
+    </div>
+
+    <div class="posit py-3 mt-4">
+      <% if current_user %>
+        <%= link_to 'Sign Out', '#', method: :delete, class: 'btn btn-success' %>
+      <% else %>
+        <h5><%= link_to 'Get Started', login_path, class: 'btn btn-outline-light d-inline-block mx-2' %></h5>
+      <% end %>
+    </div>
+  </main>
+  <%= render './layouts/footer', class: 'mt-5' %>
+</div>

@@ -1,0 +1,89 @@
+<%= render 'sidebar' %>
+<div class="main-content">
+  <%= render 'header', title: 'Dashboard' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <div class="cards">
+      <div class="cards__single">
+        <div class="">
+          <h1><%= @officers %></h1>
+          <span class="metacard">Police Officers</span>
+        </div>
+        <div class="">
+          <span class="la la-users icon"></span>
+        </div>
+      </div>
+      <div class="cards__single">
+        <div class="">
+          <h1><%= @crimes.count %></h1>
+          <span class="metacard">Reported Crimes</span>
+        </div>
+        <div class="">
+          <span class="la la-users icon"></span>
+        </div>
+      </div>
+      <div class="cards__single">
+        <div class="">
+          <h1><%= @complainants %></h1>
+          <span class="metacard">Complainants</span>
+        </div>
+        <div class="">
+          <span class="la la-clipboard-list icon"></span>
+        </div>
+      </div>
+      <div class="cards__single">
+        <div class="">
+          <h1><%= @firs.count %></h1>
+          <span class="metacard">Received FIRs</span>
+        </div>
+        <div class="">
+          <span class="la la-clipboard-list icon"></span>
+        </div>
+      </div>
+    </div>
+    <section class="recent-grid">
+      <div class="projects">
+        <div class="projects__card b-none">
+          <div class="projects__card-header">
+            <h4>Latest FIRs  (<%= @pending_firs.count %> pending)</h4>
+            <%= link_to first_information_reports_path do %>
+              <button>See all <span class="las la-arrow-right"></span></button>
+            <% end %>
+          </div>
+          <div class="projects__card-body">
+            <div class="table-responsive">
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <td>Offence</td>
+                    <td>Date</td>
+                    <td>Status</td>
+                    <td>Action</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= all_firs(@firs) %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="customers">
+        <div class="customers__card">
+          <div class="customers__card-header">
+            <h4>Latest Crimes </h4>
+            <%= link_to crimes_path do %>
+              <button>See all <span class="las la-arrow-right"></span></button>
+            <% end %>
+          </div>
+          <%= all_crimes(@crimes) %>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

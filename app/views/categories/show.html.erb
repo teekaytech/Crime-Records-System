@@ -1,0 +1,24 @@
+<%= render partial: './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'Crime Categories' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav', text: ['Add Category', 'All Categories'], url: [new_category_path, categories_path] %>
+    <div class="bg-white p-5 text-center">
+      <h5>
+        <strong class="d-block">Category name:</strong>
+        <%= @category.name %>
+      </h5>
+      <p class="my-5">
+        <strong class="d-block">Registered Officer:</strong>
+        <%= @category.user.full_name %> (<%= @category.user.account_type %>)
+      </p>
+
+      <%= link_to 'Edit', edit_category_path(@category) %> |
+      <%= link_to 'Back', categories_path %>
+    </div>
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>

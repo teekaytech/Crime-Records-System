@@ -1,0 +1,70 @@
+<%= render './dashboard/sidebar' %>
+<div class="main-content">
+  <%= render './dashboard/header', title: 'First Information Reports' %>
+  <main>
+    <%= render 'layouts/alerts' %>
+    <%= render 'nav_firs' %>
+    <div class="bg-white p-2 ">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">UID</th>
+          <th scope="col">Officer</th>
+          <th scope="col">Complainant</th>
+          <th scope="col">Offense</th>
+          <th scope="col">Date</th>
+          <th scope="col">Location</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @firs.each do |fir| %>
+            <tr>
+              <td><%= id_formatter(fir.id) %></td>
+              <td><%= "#{fir.user.firstname.titlecase } #{fir.user.lastname.titlecase }" %></td>
+              <td>
+                <%= link_to complainant_path(fir.complainant) do %>
+                  <%= "#{fir.complainant.firstname.titlecase} #{fir.complainant.surname.titlecase }" %>
+                  <p>(<%= fir.complainant.phone %>)</p>
+                <% end %>
+              </td>
+              <td><%= fir.offense %></td>
+              <td><%= fir.date.strftime('%D') %></td>
+              <td><%= fir.location %></td>
+              <td><%= fir.status %></td>
+              <td>
+                <%= link_to fir, class: 'badge bg-dark' do %>
+                  <span class="las la-eye"></span>
+                <% end %>
+                <%= link_to edit_first_information_report_path(fir), class: 'badge bg-info' do %>
+                  <span class="las la-user-edit"></span>
+                <% end %>
+                <% if current_user.admin? %>
+                  <% if fir.pending? || fir.rejected? %>
+                    <%= link_to approve_fir_path(fir), method: :post, class: 'badge bg-success', data: {confirm: 'Approve FIR?' } do %>
+                      <span class="las la-check-square"></span>
+                    <% end %>
+                  <% end %>
+                  <% if fir.approved? %>
+                    <%= link_to reject_fir_path(fir), method: :post, class: 'badge bg-warning', data: {confirm: 'Reject FIR?' } do %>
+                      <span class="">X</span>
+                    <% end %>
+                  <% end %>
+                  <%= link_to first_information_report_path(fir), method: :delete, class: 'badge bg-danger', data: {confirm: 'Delete FIR?' } do %>
+                    <span class="las la-trash"></span>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @firs, renderer: BootstrapPagination::Rails %>
+    </div>
+
+  </main>
+  <div class="text-center">
+    <%= render 'layouts/footer' %>
+  </div>
+</div>
